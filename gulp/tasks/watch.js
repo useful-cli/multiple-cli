@@ -10,4 +10,6 @@ gulp.task('watch', ['browsersync'], function() {
   gulp.watch(config.images,  ['images']);
   gulp.watch(config.html,  ['copy:htmls'])
   gulp.watch("dist/*.html").on("change", browsersync.reload);
+  gulp.watch("dist/assets/css/main.css").on("change", browsersync.reload);
+  gulp.watch("dist/assets/js/*.js").on("change", browsersync.reload);
 });
