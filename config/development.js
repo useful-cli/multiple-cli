@@ -1,4 +1,4 @@
-modules.exports = {
+module.exports = {
     env: 'development',
     MONGOOSE_DEBUG: true,
     meiziKey: "1995",
