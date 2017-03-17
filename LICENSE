@@ -1,6 +1,10 @@
 MIT License
 
+<<<<<<< HEAD
 Copyright (c) 2017 magic-wind
+=======
+Copyright (c) 2017 useful-cli
+>>>>>>> b7f0495811fa626e5f9d30a40ad1cda0e4aae1b4
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
