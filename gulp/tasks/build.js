@@ -9,8 +9,9 @@ gulp.task('build', function(callback) {
 				'images',
 				'lib-scripts', 
 				'lib-css', 
-				'copy:fonts'
+				'copy:fonts',
+				'copy:htmls'
 		  ],
-			'copy:htmls',
+			'copy:index',
 		callback);
 });

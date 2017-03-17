@@ -9,16 +9,21 @@ var distAssets = 'dist/assets';
 const defaults = {
   src: src,
   dist: dist,
+  del: {
+    dist: 'dist/'
+  },
   scripts: {
     src: 'src/assets/js/*.js',
     ignore: '!src/assets/js/lib/*.js',
-    libjs: 'src/assets/js/lib/*.js',
+    libjs: ['src/assets/js/lib/*.js', 'src/assets/js/lib/**/*.js'],
     distignore: 'dist/assets/js/lib',
     dist: 'dist/assets/js'
   },
   html: {
-    src: 'src/*.html',
-    dist: 'dist/'
+    index: 'src/index.html',
+    src: 'src/view/*.html',
+    dist: 'dist/',
+    view: 'dist/view'
   },
   less: {
     src: 'src/assets/less/main.less',
@@ -52,8 +57,9 @@ const defaults = {
     cssstyles: srcAssets + '/css/*.css',
     lessstyles: srcAssets + '/less/*.less',
     scripts: srcAssets + '/js/**/*.js',
+    libscripts: [srcAssets + '/js/lib/*.js', srcAssets + '/js/lib/**/*.js'],
     images: srcAssets + '/images/**/*',
-    html: 'src/*.html',
+    html: ['src/view/*.html','src/*.html'],
     disthtml: 'dist/*.html',
     sprites: srcAssets + '/images/**/*.png',
     svg: 'vectors/*.svg'
