@@ -10,7 +10,7 @@ gulp.task('build', function(callback) {
 				'lib-scripts', 
 				'lib-css', 
 				'copy:fonts',
-				'copy:htmls'
+				'fileinclude'
 		  ],
 			'copy:index',
 		callback);

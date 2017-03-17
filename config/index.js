@@ -5,6 +5,7 @@ var src = 'src';
 var dist = 'dist/assets/';
 var srcAssets = 'src/assets';
 var distAssets = 'dist/assets';
+var distView = 'dist/view';
 
 const defaults = {
   src: src,
@@ -26,7 +27,7 @@ const defaults = {
     view: 'dist/view'
   },
   less: {
-    src: 'src/assets/less/main.less',
+    src: ['src/assets/less/main.less'],
     ignore: '!src/assets/less/extend/{reset,test}.less',
     dist: 'dist/assets/css'
   },
@@ -59,10 +60,15 @@ const defaults = {
     scripts: srcAssets + '/js/**/*.js',
     libscripts: [srcAssets + '/js/lib/*.js', srcAssets + '/js/lib/**/*.js'],
     images: srcAssets + '/images/**/*',
-    html: ['src/view/*.html','src/*.html'],
+    html: ['src/view/*.html','src/*.html', 'src/template/*.html'],
     disthtml: 'dist/*.html',
     sprites: srcAssets + '/images/**/*.png',
-    svg: 'vectors/*.svg'
+    svg: 'vectors/*.svg',
+    disthtml: ['dist/view/*.html','dist/*.html', 'dist/template/*.html']
+  },
+  include: {
+    src: ['src/view/*.html'],
+    dist: distView
   },
   rsync: {
     src: '/**',
