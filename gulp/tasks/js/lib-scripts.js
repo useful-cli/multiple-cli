@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var notify = require('gulp-notify');
-var config = require('../../config').scripts;
+var config = require('../../../config').scripts;
 // process JS files and return the stream.
 gulp.task('lib-scripts', function() {
   return gulp.src(config.libjs)

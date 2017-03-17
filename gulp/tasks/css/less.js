@@ -3,7 +3,7 @@ var gulpLoadPlugins = require('gulp-load-plugins');
 var plugins = gulpLoadPlugins();
 var browsersync = require('browser-sync').create(); 
 var reload = browsersync.reload;
-var config = require('../../config').less;
+var config = require('../../../config').less;
 
 gulp.task('less', function (callback) {
     return gulp.src(['src/assets/less/main.less','!src/assets/less/extend/{reset,test}.less'])
@@ -12,8 +12,16 @@ gulp.task('less', function (callback) {
         .pipe(plugins.less())
         .pipe(plugins.autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
         .pipe(plugins.sourcemaps.write())
+        .pipe(gulp.dest('dist/assets/css'))
+        .pipe(plugins.rename({suffix: '.min'}))
         .pipe(plugins.cssmin())
         .pipe(gulp.dest('dist/assets/css'))
+        .pipe(plugins.rev())
+        .pipe(gulp.dest('dist/assets/css'))
+        .pipe(plugins.rev.manifest({
+            merge: true
+         }))
+        .pipe(gulp.dest('dist/assets/rev/css'))
         .pipe(plugins.notify({ message: 'Styles task complete' }))
         .pipe(reload({stream: true}));
 });

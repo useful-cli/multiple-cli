@@ -1,5 +1,6 @@
-var gulp = require('gulp');
-// use default task to launch Browsersync and watch JS files
-gulp.task('dev', ['build', 'browsersync', 'watch'], function () {
+var gulp = require('gulp'); 
+var runSequence = require('run-sequence');
+/** * Run all tasks needed for a build in defined order */ 
+gulp.task('dev', ['build', 'watch'], function(callback) { 
 
 });

@@ -21,7 +21,7 @@ const defaults = {
     dist: 'dist/assets/js'
   },
   html: {
-    index: 'src/index.html',
+    index: 'src/*.html',
     src: 'src/view/*.html',
     dist: 'dist/',
     view: 'dist/view'
@@ -60,8 +60,10 @@ const defaults = {
     scripts: srcAssets + '/js/**/*.js',
     libscripts: [srcAssets + '/js/lib/*.js', srcAssets + '/js/lib/**/*.js'],
     images: srcAssets + '/images/**/*',
-    html: ['src/view/*.html','src/*.html', 'src/template/*.html'],
-    disthtml: 'dist/*.html',
+    indexhtml: 'src/*.html',
+    viewhtml: 'src/view/*.html',
+    temlhtml: 'src/template/*.html',
+    disthtml: ['dist/*.html', 'dist/view/*.html'],
     sprites: srcAssets + '/images/**/*.png',
     svg: 'vectors/*.svg',
     disthtml: ['dist/view/*.html','dist/*.html', 'dist/template/*.html']

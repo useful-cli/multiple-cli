@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var gulpLoadPlugins = require('gulp-load-plugins');
 var plugins = gulpLoadPlugins();
-var config  = require('../../config').images;
+var config  = require('../../../config').images;
 /**
  * Copy images to build folder
  * if not changed

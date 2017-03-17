@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var config = require('../../config').copyfonts;
+var config = require('../../../config').copyfonts;
 /**
  * Copy fonts to folder
  */
