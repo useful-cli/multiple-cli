@@ -7,13 +7,6 @@ html {
     overflow-x: hidden;
 }
 
-body {}
-
-.maxwidth {
-    max-width: 1440px;
-    margin: auto;
-}
-
 .padding-both {
     padding-left: 20px;
     padding-right: 20px;
@@ -46,57 +39,7 @@ body {}
 .mj {
     padding: 0 0;
     .min-height;
-    &-nav {
-        padding-left: 10%;
-        padding-right: 10%;
-        margin-bottom: 0;
-        background-color: white;
-        border: none;
-        font-family: 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
-        .container-fluid {
-            .maxwidth;
-        }
-        .navbar-header {
-            .navbar-toggle {
-                margin-top: 21px;
-            }
-            .navbar-brand {
-                height: 100%;
-                img {
-                    width: 90px;
-                }
-            }
-        }
-        ul li {
-            padding-top: 14px;
-            padding-bottom: 9px;
-            box-sizing: border-box;
-            &:hover {
-                border-bottom: 3px solid @dark-yellow;
-                a {
-                    color: @dark-yellow !important;
-                }
-            }
-            &:last-child {
-                a {
-                    padding-right: 0;
-                }
-            }
-            a {
-                text-align: center;
-                min-width: 101px;
-                font-size: 18px;
-                color: #333 !important;
-                padding: 10px 10px;
-            }
-        }
-        ul li.nav-active {
-            border-bottom: 3px solid @dark-yellow;
-            a {
-                color: @dark-yellow !important;
-            }
-        }
-    }
+
     &-swiper {
         width: 100%;
         max-height: 698px;
@@ -351,33 +294,6 @@ body {}
             }
             span {
                 color: #666;
-            }
-        }
-    }
-}
-
-.footer {
-    padding: 0 0;
-    background: #333333;
-    &-con {
-        .maxwidth;
-        padding-top: 25px;
-        padding-bottom: 10px;
-        padding-left: 4%;
-        color: white;
-        p {
-            font-size: 15px;
-            padding-bottom: 15px;
-        }
-        &-wx {
-            text-align: center;
-            img {
-                height: 80px;
-                width: 80px;
-            }
-            p {
-                padding-top: 5px;
-                font-size: 12px;
             }
         }
     }
