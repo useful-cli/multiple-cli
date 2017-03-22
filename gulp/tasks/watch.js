@@ -5,8 +5,8 @@ var browsersync = require('browser-sync');
  * Start browsersync task and then watch files for changes
  */
 gulp.task('watch', ['browsersync'], function() {
-  gulp.watch(config.lessstyles,  ['less', 'rev']);
-  gulp.watch(config.scripts, ['simple-scripts', 'rev']);
+  gulp.watch(config.lessstyles,  ['less']);
+  gulp.watch(config.scripts, ['simple-scripts']);
   gulp.watch(config.images,  ['images']);
   gulp.watch(config.indexhtml,  ['copy:index']);
   gulp.watch([config.temlhtml, config.viewhtml],  ['fileinclude']);

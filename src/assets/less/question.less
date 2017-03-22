@@ -1,0 +1,66 @@
+@import "font";
+@import "color";
+
+.mj {
+	&-question {
+    .maxwidth;
+    padding: 60px 110px;
+		&-box {
+			text-align: center;
+			border: 1px solid #ccc;
+			padding-right: 0;
+			padding-left: 0;
+			&__title {
+				font-size: 22px;
+				line-height: 60px;
+				height: 60px;
+				border-bottom: 3px solid @dark-yellow;
+			}
+			&__select {
+				cursor: pointer;
+				p.active {
+					color: @dark-yellow;
+				}
+				p {
+					padding: 15px 0;
+					font-size: 20px;
+					&:hover {
+						color: @dark-yellow;
+					}
+				}
+			}
+		}
+
+		&-info {
+			border: 1px solid #ccc;
+			padding: 20px 34px;
+			#help {
+				display: block;
+			}
+			article {
+				display: none;
+			}
+			&__part {
+				padding: 20px 0;
+				margin-bottom: 30px;
+				border-bottom: 1px solid #ccc;
+				&:last-child {
+			  	border-bottom-width: 0;
+				}
+				&--title {
+					color: #333333;
+					padding: 10px 10px;
+					font-size: 26px;
+					border-left: 3px solid @dark-yellow;
+				}
+				&--content {
+					color: #666666;
+					font-size: 22px;
+					padding: 30px 20px;
+					line-height: 33px;
+					letter-spacing: 4px;
+				}
+			}
+		}
+	}
+}

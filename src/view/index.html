@@ -52,7 +52,7 @@
         <div class="mj-search row">
             <div class="col-md-5">
                 <div class="mj-search-box">
-                    <p>物流信息d查询</p>
+                    <p>物流信息查询</p>
                     <div class="mj-search-box-tools">
                         <select name="express" placeholder="请选择快递公司" id="brand">
                             <option value="" class="hide">请选择快递公司</option>
@@ -75,7 +75,7 @@
                             <input id="city-picker" readonly type="text" placeholder="请选择省市区">
                         </div>
                         <input style="width: 46%;" type="text" name="" value="" placeholder="请输入关键地址， 如小区名、大厦">
-                        <button type="button" class="btn btn-default">查询</button>
+                        <button type="button" class="btn btn-default" id="express-city">查询</button>
                     </div>
                 </div>
             </div>
@@ -231,6 +231,13 @@
         expressBtn.click(function(event) {
             /* Act on the event */
             jumpToExpressSearch();
+        });
+
+        var cityBtn = $('#express-city');
+
+        cityBtn.click(function(event) {
+            /* Act on the event */
+            alert('暂未开通， 敬请期待')
         });
     });
     </script>
