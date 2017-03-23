@@ -2,8 +2,11 @@
 @import "color";
 
 .mj {
-	&-question {
-    .maxwidth;
+	&-question {	
+  	border-top: 2px solid @dark-yellow;
+    .row {
+	    .maxwidth;
+    }
     padding: 60px 110px;
 		&-box {
 			text-align: center;
@@ -22,7 +25,7 @@
 					color: @dark-yellow;
 				}
 				p {
-					padding: 15px 0;
+					padding: 10px 0;
 					font-size: 20px;
 					&:hover {
 						color: @dark-yellow;
@@ -50,14 +53,14 @@
 				&--title {
 					color: #333333;
 					padding: 10px 10px;
-					font-size: 26px;
+					font-size: 22px;
 					border-left: 3px solid @dark-yellow;
 				}
 				&--content {
 					color: #666666;
-					font-size: 22px;
-					padding: 30px 20px;
-					line-height: 33px;
+					font-size: 18px;
+					padding: 5px 20px;
+					line-height: 23px;
 					letter-spacing: 4px;
 				}
 			}
