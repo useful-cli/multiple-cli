@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @@include('../template/meta.html')
+    <title>圈嘀业务分布地图</title>
+    <link rel="shortcut icon" href="../assets/images/logo.ico" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/main.min.css">
+</head>
+
+<body>
+    <div class="mj container-fluid">
+        @@include('../template/header.html')
+        <div class="mj-bmap">
+            <div class="mj-bmap-container">
+                <div id="container" style="height: 600px;width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+    @@include('../template/footer.html')
+    <script src="../assets/js/lib/jquery-3.1.1.min.js"></script>
+    <script src="../assets/js/lib/bootstrap.min.js"></script>
+    <script src="../assets/js/main.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        function cityMap(cities) {
+            if (!Array.isArray(cities)) return;
+            return cities.map(function(city){
+                let item = {}
+                item.name = city
+                item.selected = true
+                return item
+            })
+        }
+        var cities = ['上海', '北京', '重庆', '江苏', '山东']
+        var selectedCities = cityMap(cities)
+        var provinceObj = {
+            '上海': 'shanghai',
+            '北京': 'beijing',
+            '重庆': 'chongqing',
+            '江苏': 'jiangsu',
+            '山东': 'shandong',
+        }
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('container'))
+        // 绘制图表
+        var option = {
+            tooltip: {
+                trigger: 'item',
+                formatter: '{b}'
+            },
+            series: [{
+                name: '中国',
+                type: 'map',
+                mapType: 'china',
+                selectedMode: false,
+                label: {
+                    normal: {
+                        show: true
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                data: selectedCities
+            }]
+        }
+        myChart.setOption(option)
+        function getUtf8Length(str){
+            if (str==""||str==null)
+                return 0;
+            var n = 0;
+            len = 0;
+            for (i = 0; i < str.length; i++) {
+                n = str.charCodeAt(i);
+                if (n <= 255)
+                    len += 1;
+                else
+                    len += 3;
+            }
+            return len;
+        }
+        myChart.on('click', function(params) {
+            let name = params.name
+            let province = provinceObj[name]
+            if (province) {
+                let url = 'bmap-province.html?province=' + province + '&name=' + name
+                // window.location = encodeURI(url)
+                window.open(encodeURI(url))
+            } else {
+                alert(name + '暂未开通')
+            }
+        })
+    </script>
+</body>
+
+</html>

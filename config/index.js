@@ -56,7 +56,7 @@ const defaults = {
   },
   watch: {
     cssstyles: srcAssets + '/css/*.css',
-    lessstyles: srcAssets + '/less/*.less',
+    lessstyles: [srcAssets + '/less/*.less', srcAssets + '/less/**/*.less'],
     scripts: srcAssets + '/js/**/*.js',
     libscripts: [srcAssets + '/js/lib/*.js', srcAssets + '/js/lib/**/*.js'],
     images: srcAssets + '/images/**/*',

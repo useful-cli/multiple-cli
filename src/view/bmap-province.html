@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @@include('../template/meta.html')
+    <title>圈嘀业务分布地图</title>
+    <link rel="shortcut icon" href="../assets/images/logo.ico" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/main.min.css">
+</head>
+
+<body>
+    <div class="mj container-fluid">
+        @@include('../template/header.html')
+        <div class="mj-bmap">
+            <div class="mj-bmap-container">
+                <div id="container" style="height: 600px;width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+    @@include('../template/footer.html')
+    <script src="../assets/js/lib/jquery-3.1.1.min.js"></script>
+    <script src="../assets/js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    // load province map js by query
+       var href = window.location.href
+       function getQuery(name) {  
+           var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i")
+           const url = decodeURI(window.location.search)
+           var r = url.substr(1).match(reg)
+           var context = ""
+           if (r != null) context = r[2]  
+           reg = null
+           r = null
+           return context === null || context === "" || context === "undefined" ? "" : context;  
+       }
+       var province = getQuery('province')
+       var provinceName = getQuery('name')
+       document.write("<script language='javascript' src='..\/assets\/js\/lib\/echarts\/map\/js\/"+ province +".js' > <\/script>")
+    </script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script src="../assets/js/main.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        console.log('province', province)
+        console.log('provinceName', provinceName)
+        var dom = document.getElementById("container");
+        var provinceChart = echarts.init(dom);
+        let option = null;
+        function showProvince() {
+            provinceChart.setOption(option = {
+                backgroundColor: '#404a59',
+                title: {
+                    text: provinceName,
+                    left: 'center',
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                series: [{
+                    type: 'map',
+                    mapType: provinceName,
+                    label: {
+                        emphasis: {
+                            textStyle: {
+                                color: '#fff'
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            borderColor: '#389BB7',
+                            areaColor: '#fff',
+                        },
+                        emphasis: {
+                            areaColor: '#389BB7',
+                            borderWidth: 0
+                        }
+                    },
+                    animation: false
+                }]
+            });
+           
+        }
+
+        showProvince();;
+
+        if (option && typeof option === "object") {
+            provinceChart.setOption(option, true);
+        }
+        provinceChart.on('click', function(params) {
+            console.log('params', params)
+            let name = params.name
+        })
+    </script>
+</body>
+
+</html>
