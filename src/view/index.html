@@ -180,12 +180,34 @@
             </div>
         </div>
         <div class="mj-joinus">
-            <a href="#" title="">马上申请合作</a>
+            <button id="mj-joinus-btn">马上申请合作</button>
         </div>
+        <div class="mj-modal hide" id="joinusModal">
+          <div class="mj-modal-title">
+              <i class="close"></i>
+          </div>
+          <div class="mj-modal-form">
+              <form>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="join_name" placeholder="请输入姓名">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="join_mobile" placeholder="请输入手机号">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="join_storename" placeholder="请输入门店名称">
+                </div>
+                <div class="tc">
+                   <button type="button" id="modal-submit" class="mj-modal-form--btn btn btn-default btn-lg">提交申请</button>
+                </div>
+              </form>
+          </div>
+        </div><!-- /.modal -->
+
         <div class="mj-coservice">
             <div class="mj-coservice-row row">
                 <div class="col-md-6 tl ">
-                    <a href="#" title="">关于我们</a>
+                    <a href="about.html" title="关于我们">关于我们</a>
                 </div>
                 <div class="col-md-6 tr">
                     <i class="icon-phone"></i><span>客服电话：4008201563 (9:30-18:00在线) </span>
@@ -239,6 +261,73 @@
             /* Act on the event */
             alert('暂未开通， 敬请期待')
         });
+
+        var modalBtn = $('#mj-joinus-btn')
+        var modal = $('.mj-modal')
+        var closeModal = $('.mj-modal .close') 
+        modalBtn.click(function(event) {
+            modal.removeClass('hide')
+        })
+        closeModal.click(function(event) {
+            /* Act on the event */
+            modal.addClass('hide')
+        });
+
+        var joinUsUrl = 'http://192.168.0.251:8080/MijiWeb/joinInsert.action?param='
+        // var joinUsUrl = 'qpp.quandikeji.com:8088/MijiWeb/joinInsert.action?'
+        // var param = "{'name':'王大锤','mobile':'13407249293','storeName':'7间客栈','Freelanding':'TWlqaVdlYi9qb2luSW5zZXJ0LmFjdGlvbg=='}"
+        var param = {}
+        var join_name, join_mobile, join_storename
+        var Freelanding = 'TWlqaVdlYi9qb2luSW5zZXJ0LmFjdGlvbg'
+        
+        function checkPhone(phone){ 
+            if(!(/^1[34578]\d{9}$/.test(phone))){ 
+                alert("手机号码有误，请重填");  
+                return false; 
+            }
+            return true
+        }
+
+        function joinUs () {
+            join_name = $('#join_name').val()
+            join_mobile = $('#join_mobile').val()
+            join_storename = $('#join_storename').val()
+            var checkphone = checkPhone(join_mobile)
+            console.log(`name ${join_name}, mobile ${join_mobile}, store ${join_storename}`)
+            if (checkphone) {
+                param.name = join_name
+                param.mobile = join_mobile
+                param.storeName = join_storename
+                param.Freelanding = Freelanding
+
+                var posturl = joinUsUrl + JSON.stringify(param)
+                console.log('posturl', posturl)
+                $.post(posturl, function(data) {
+                    console.log('data', data)
+                    console.log('data', typeof data)
+                    data = JSON.parse(data)
+                    if (data.code === 200) {
+                        alert("门店申请成功， 请耐心等待审核")
+                        modal.addClass('hide')
+                    } else {
+                        alert(data.mess)
+                    }
+                })
+                .fail(function (data) {
+                    console.log('data', data)
+                    alert("门店申请失败，请重新尝试");
+                })
+            }
+        }
+
+
+
+        var modalSubmit = $('#modal-submit')
+
+        modalSubmit.click(function () {
+            joinUs()
+        })
+
     });
     </script>
 </body>

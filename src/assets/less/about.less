@@ -1,0 +1,254 @@
+@import "font";
+@import "color";
+
+.normal-shadow {
+	box-shadow: 1px 1px 20px #333;
+}
+
+.mj {
+	&-about {	
+  	border-top: 2px solid @dark-yellow;
+    padding: 60px 120px;
+    .row {
+	    .maxwidth;
+    }
+		&-box {
+			text-align: center;
+			border: 1px solid #ccc;
+			padding: 15px 5px;
+			max-width: 200px;
+			&__title {
+				font-size: 22px;
+				line-height: 60px;
+				height: 60px;
+				border-bottom: 3px solid @dark-yellow;
+			}
+			&__select {
+				cursor: pointer;
+				p.active {
+					background-color: @dark-yellow;
+					color: white;
+				}
+				p {
+					margin: 8px 0;
+					padding: 10px 0;
+					font-size: 20px;
+					&:hover {
+						background-color: @dark-yellow;
+						color: white;
+					}
+				}
+			}
+		}
+
+		&-info {
+			width: 763px;
+			#intro {
+				display: block;
+			}
+			article {
+				display: none;
+			}
+			&__part {
+				margin-bottom: 30px;
+				border-bottom: 1px solid #ccc;
+				&:last-child {
+			  	border-bottom-width: 0;
+				}
+				&--course {
+					height: 1262px;
+					background: url('../images/abo_bor.png') no-repeat;
+					background-position: 50% 0;
+				}
+				.course {
+					&-box {
+						padding: 10px;
+						display: block;
+						position: absolute;
+						border: 2px solid @dark-yellow;
+						border-radius: 5px;
+						&-title {
+							padding-bottom: 10px;
+							color: @dark-yellow;
+						}
+						&:first-child {
+							top: 32.7%;
+							left: 62.8%;
+						}
+						&:nth-child(2) {
+							top: 39.1%;
+							left: 2.7%;
+						}
+						&:nth-child(3) {
+							top: 45.3%;
+							left: 62.8%;
+						}
+						&:nth-child(4) {
+							top: 51.5%;
+							left: 15.2%;
+						}
+						&:nth-child(5) {
+							top: 57.5%;
+							left: 62.7%;
+						}
+						&:nth-child(6) {
+							top: 64.2%;
+							left: 6.6%;
+						}
+						&:nth-child(7) {
+							top: 70%;
+							left: 62.7%;
+						}
+						&:nth-child(8) {
+							top: 76.4%;
+							left: 15.8%;
+						}
+						&:nth-child(9) {
+							top: 81.8%;
+							left: 62.7%;
+						}
+						&:nth-child(10) {
+							top: 88.1%;
+							left: 21.5%;
+						}
+					}
+				}
+				&--title {
+					color: #333333;
+					padding: 10px 10px;
+					margin-bottom: 20px;
+					font-size: 22px;
+					border-left: 3px solid @dark-yellow;
+				}
+				&--brand.row {
+					margin-bottom: 20px;
+					padding: 15px 5px;
+					background-color: #ececec;
+					.col-md-6 {
+						img {
+							width: 100%;
+							max-height: 270px;
+						}
+						p {
+							padding-top: 39px;
+							line-height: 28px;
+							font-size: 16px;
+							color: #666;
+							text-indent: 20px;
+							text-align: justify;
+						}
+					}
+				}
+				&--news {
+					margin-bottom: 15px;
+					padding: 12px;
+					max-width: 930px;
+					&:hover {
+						.normal-shadow;
+					}
+					.news-img {
+						.tr;
+						img {
+							width: 100%;
+						}
+					}
+					.news-content {
+						.tl;
+						&-title {
+							color: @dark-yellow;
+							font-size: 20px;
+						}
+						&-time {
+							font-size: 16px;
+							color: #999;
+							padding: 10px 0;
+						}
+						&-intro {
+							line-height: 30px;
+							padding: 20px;
+						}
+						&-link {
+							.tr;
+							a {
+								color: @dark-yellow;
+							}
+						}
+					}
+				}
+				&--content {
+					font-size: 18px;
+					padding-top: 15px;
+					line-height: 24px;
+					letter-spacing: 4px;
+					div.row{
+						div {
+							margin: 0;
+							padding: 0;
+						}
+						.col-md-2 {
+							font-size: 16px;
+							color: black;
+						}
+						.col-md-10 {
+							color: #666;
+							font-size: 15px;
+							padding-bottom: 10px;
+						}
+					}
+					.company-name {
+						color: @dark-yellow;
+						font-size: 18px;
+						padding: 12px 0;
+					}
+					p.company-detail {
+						padding: 10px 0;
+						color: #666;
+					}
+				}
+				.wrapper {
+					padding: 20px;
+					padding-top: 5px;
+					&:hover {
+						box-shadow: 1px 1px 20px #333;
+					}
+				}
+				&--detail {
+					padding: 20px 0;
+					padding-top: 0;
+					border-bottom: 1px solid #ccc;
+					div {
+						display: inline-block;
+					}
+				}
+				&--name {
+					span.name {
+						padding: 16px;
+						color: white;
+						font-size: 20px;
+						background-color: @dark-yellow;
+					}
+					.arrow-right {
+						display: inline-block;
+						vertical-align: middle;
+						margin-top: -5px;
+						border: 27px solid transparent;
+						border-left: 22px solid @dark-yellow;
+					}
+				}
+				&--pay {
+					float: right;
+					padding-top: 10px;
+					font-size: 18px;
+					color: @dark-yellow;
+					&:after {
+						clear: both;
+						content: '';
+					}
+					span {
+						color: #666;
+					}
+				}
+			}
+		}
+	}
+}

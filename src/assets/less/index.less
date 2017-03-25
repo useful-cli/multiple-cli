@@ -273,14 +273,49 @@ html {
         padding-top: 58px;
         padding-bottom: 58px;
         text-align: center;
-        a {
+        button {
             color: @dark-yellow;
             font-size: @title-font-size;
             border: 2px solid @dark-yellow;
+            background-color: transparent;
             padding: 10px 10px;
             border-radius: 10px 10px;
         }
     }
+
+    &-modal {
+        background-color: white;
+        z-index: 100;
+        display: block;
+        position: fixed;
+        bottom: 100px;
+        width: 600px;
+        height: 460px;
+        left: 35%;
+        box-shadow: 1px 1px 20px #333;
+        &-title {
+            padding: 20px;
+            text-align: right;
+            .close {
+                opacity: 1;
+            }
+        }
+
+        &-form {
+            padding: 40px;
+            padding-bottom: 20px;
+            .form-control {
+                margin-bottom: 30px;
+                height: 70px;
+                font-size: 18px;
+            }
+            &--btn {
+                color: white;
+                background-color: @dark-yellow;
+            }
+        }
+    }
+
     &-coservice {
         .maxwidth;
         .padding-both;

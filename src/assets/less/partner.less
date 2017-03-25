@@ -1,0 +1,133 @@
+@import "font";
+@import "color";
+
+.mj {
+	&-partner {
+		&-banner {
+			width: 100%;
+			padding-bottom: 30px;
+			img {
+				width: 100%;
+				max-height: 310px;
+			}
+		}
+		
+		&-intro {
+			max-width: 1080px;
+			padding: 10px 20px;
+			margin: auto;
+			&:last-child {
+				padding-bottom: 150px;
+			}
+			&__title {
+				padding: 60px 10px;
+				text-align: center;
+				color: @dark-yellow;
+				font-size: 40px;
+			}
+			&__gray {
+				margin: 0;
+				background-color: #ccc;
+				padding: 10px;
+				.col-md-6 {
+					img {
+						width: 100%;
+						max-height: 270px;
+					}
+					p {
+						padding-top: 39px;
+						line-height: 28px;
+						font-size: 16px;
+						color: #666;
+						text-indent: 20px;
+						text-align: justify;
+						*text-align: left;
+					}
+				}
+			}
+
+			&__safe {
+				margin: 0;
+				padding: 10px;
+				.col-md-4 {
+					img {
+						width: 100%;
+						max-height: 380px;
+					}
+				}
+				.col-md-8 {
+					p {
+						line-height: 28px;
+						font-size: 18px;
+						letter-spacing: 4px;
+						color: #666;
+						text-align: justify;
+						*text-align: left;
+						color: white;
+						border-radius: 15px;
+						padding: 24px;
+						margin-bottom: 25px;
+						&:first-child {
+							background-color: @dark-grey;
+						}
+						&:nth-child(2) {
+							background-color: @light-blue;
+						}
+						&:last-child {
+							margin-bottom: 0;
+							background-color: @light-red;
+						}
+					}
+				}
+			}
+
+			&__list {
+				line-height: 30px;
+				font-size: 18px;
+				text-align: left;
+				color: #666666;
+				span {
+					position: absolute;
+					width: 12px;
+			    height: 12px;
+			    display: inline-block;
+			    background: @dark-yellow;
+			    border-radius: 50%;
+			    margin-left: -24px;
+			    margin-top: 9px;
+				}
+				p {
+					padding: 5px 0;
+					padding-left: 5px;
+				}
+			}
+
+			&__flow {
+				margin: 0;
+				text-align: center;
+				p.title {
+					text-align: center;
+					font-size: 22px;
+					padding: 15px;
+					span {
+						padding-right: 5px;
+						color: @dark-yellow;
+					}
+				}
+				p.info {
+					padding: 10px 40px;
+					padding-left: 50px;
+					text-align: left;
+					font-size: 14px;
+					line-height: 22px;
+				}
+			}
+
+			&__list--arrow {
+				p {
+					white-space: nowrap;
+				}
+			}
+		}
+	}
+}
