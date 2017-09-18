@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @@include('../template/meta.html')
-    <title>下载</title>
+    <title>妙寄智慧社区--下载</title>
     <link rel="shortcut icon" href="../assets/images/logo.ico" />
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
@@ -19,12 +19,147 @@
         <div class="grey-bg">
             <div class="mj-service">
                 <div class="mj-service-box row">
-                    <div class="col-md-2">
+                    <div class="col-md-2 mj-service-box__title">
                         <p>快递查询</p>
                     </div>
                     <div class="col-md-10">
-                        <div class="">
-                            <input type="text" name="ordersnc"> <button type="" class="btn btn-default">查询</button>
+                        <div class="mj-service-box__search tl">
+                            <input type="text" id="ordersn" name="ordersnc" placeholder="请输入您需要查询的运单号"> <button type="" class="btn btn-default" id="searchBtn" >查询</button>
+                        </div>
+                        <div class="mj-service-box__picker">
+                            <p class="tl">选择快递公司<span id="exploreS">展开</span></p>
+                            <ul>
+                                <li value="顺丰">
+                                    <img src="../assets/images/expresslogo/shunfeng.png" alt="顺丰">
+                                    <span>顺丰快递</span>
+                                </li>   
+                                <li value="申通">
+                                    <img src="../assets/images/expresslogo/shentong.png" alt="申通">
+                                    <span>申通快递</span>
+                                </li>
+                                <li value="圆通">
+                                    <img src="../assets/images/expresslogo/yuantong.png" alt="圆通">
+                                    <span>圆通快递</span>
+                                </li>
+                                <li value="如风达">
+                                    <img src="../assets/images/expresslogo/rufengda.png" alt="如风达">
+                                    <span>如风达</span>
+                                </li>
+                                <li value="中国邮政">
+                                    <img src="../assets/images/expresslogo/youzheng.png" alt="邮政">
+                                    <span>中国邮政</span>
+                                </li>
+                            </ul>  
+                            <ul>
+                                <li value="安能物流">
+                                    <img src="../assets/images/expresslogo/anneng.png" alt="安能物流">
+                                    <span>安能物流</span>
+                                </li>
+                                <li value="百事">
+                                    <img src="../assets/images/expresslogo/baishi.png" alt="百事">
+                                    <span>百事快递</span>
+                                </li>
+                                <li value="达达">
+                                    <img src="../assets/images/expresslogo/dada.png" alt="达达">
+                                    <span>达达快递</span>
+                                </li>
+                                <li value="EMS">
+                                    <img src="../assets/images/expresslogo/ems.png" alt="EMS">
+                                    <span>EMS</span>
+                                </li>
+                                <li value="德邦">
+                                    <img src="../assets/images/expresslogo/debang.png" alt="德邦">
+                                    <span>德邦快递</span>
+                                </li>
+                            </ul>   
+                            <ul class="exptend-ex hide">
+                                <li value="高铁快递">
+                                    <img src="../assets/images/expresslogo/gaotiekuaiyun.png" alt="高铁快递">
+                                    <span>高铁快递</span>
+                                </li>
+                                <li value="国通">
+                                    <img src="../assets/images/expresslogo/guotong.png" alt="国通">
+                                    <span>国通快递</span>
+                                </li>
+                                <li value="京东">
+                                    <img src="../assets/images/expresslogo/jingdong.png" alt="京东">
+                                    <span>京东快递</span>
+                                </li>
+                                <li value="快捷">
+                                    <img src="../assets/images/expresslogo/kuaijie.png" alt="快捷">
+                                    <span>快捷</span>
+                                </li>
+                                <li value="跨越速运">
+                                    <img src="../assets/images/expresslogo/kuayue.png" alt="跨越速运">
+                                    <span>跨越速运</span>
+                                </li>
+                            </ul>
+                            <ul class="exptend-ex hide">
+                                <li value="龙邦快运">
+                                    <img src="../assets/images/expresslogo/longbang.png" alt="龙邦快运">
+                                    <span>龙邦快运</span>
+                                </li>
+                                <li value="蚂蚁帮">
+                                    <img src="../assets/images/expresslogo/mayibang.png" alt="蚂蚁帮">
+                                    <span>蚂蚁帮</span>
+                                </li>
+                                <li value="品骏快递">
+                                    <img src="../assets/images/expresslogo/pinjun.png" alt="品骏快递">
+                                    <span>品骏快递</span>
+                                </li>
+                                <li value="全峰快递">
+                                    <img src="../assets/images/expresslogo/quanfeng.png" alt="全峰快递">
+                                    <span>全峰快递</span>
+                                </li>
+                                <li value="日日顺">
+                                    <img src="../assets/images/expresslogo/ririshun.png" alt="日日顺">
+                                    <span>日日顺</span>
+                                </li>
+                            </ul>
+                            <ul class="exptend-ex hide">
+                                <li value="速尔快递">
+                                    <img src="../assets/images/expresslogo/suer.png" alt="速尔快递">
+                                    <span>速尔快递</span>
+                                </li>
+                                <li value="天天快递">
+                                    <img src="../assets/images/expresslogo/tiantian.png" alt="天天快递">
+                                    <span>天天快递</span>
+                                </li>
+                                <li value="万象物流">
+                                    <img src="../assets/images/expresslogo/wanxiang.png" alt="万象物流">
+                                    <span>万象物流</span>
+                                </li>
+                                <li value="优速快递">
+                                    <img src="../assets/images/expresslogo/yousu.png" alt="优速快递">
+                                    <span>优速快递</span>
+                                </li>
+                                <li value="远成快运">
+                                    <img src="../assets/images/expresslogo/yuancheng.png" alt="远成快运">
+                                    <span>远成快运</span>
+                                </li>
+                            </ul>  
+                            <ul class="exptend-ex hide">
+                                <li value="韵达快递">
+                                    <img src="../assets/images/expresslogo/yunda.png" alt="韵达快递">
+                                    <span>韵达快递</span>
+                                </li>
+                                <li value="宅急送">
+                                    <img src="../assets/images/expresslogo/zhaijisong.png" alt="宅急送">
+                                    <span>宅急送</span>
+                                </li>
+                                <li value="中铁快递">
+                                    <img src="../assets/images/expresslogo/zhongtie.png" alt="中铁快递">
+                                    <span>中铁快递</span>
+                                </li>
+                                <li value="中通快递">
+                                    <img src="../assets/images/expresslogo/zhongtong.png" alt="中通快递">
+                                    <span>中通快递</span>
+                                </li>
+                            </ul>                         
+                        </div>
+
+                        <div class="mj-service-box__result">
+                            <p class="tl">查询结果<span id="exploreRS">展开</span></p>
                         </div>
                     </div>
                 </div>
@@ -35,6 +170,78 @@
     <script src="../assets/js/lib/jquery-3.1.1.min.js"></script>
     <script src="../assets/js/lib/bootstrap.min.js"></script>
     <script src="../assets/js/main.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var exportEx = $('#exploreS')
+            var exploreRS = $('#exploreRS')
+            var picker = $('.mj-service-box__picker ul')
+            var pickerLi = $('.mj-service-box__picker ul li')
+            var brand = '圆通'
+            var searchBtn = $('#searchBtn')
+            var orderSn = $('#ordersn')
+            var url = 'http://app.quandikeji.com:8088/quandiExpressSite1.4.0/Logistics/queryLogisticsInfoForJson?'
+            // var url = 'http://192.168.0.168:8890/quandiExpressSite/Logistics/queryLogisticsInfoForJson?'
+            exportEx.on('click', function () {
+                var exptendUl = $('ul.exptend-ex')
+                exptendUl.toggleClass('hide')
+            })
+            exploreRS.on('click', function () {
+                var exptendRow = $('div.rowexpend')
+                exptendRow.toggleClass('hide')
+            })
+            picker.on('click', 'li', function (e) {
+                event.preventDefault()
+                var target = e.currentTarget
+                console.log(e.currentTarget)
+                var li = $(target)
+                brand = li.attr('value')
+                console.log('brand', brand)
+                pickerLi.removeClass('liactive')
+                li.addClass('liactive')
+            })
+
+            searchBtn.on('click', function(event) {
+                event.preventDefault();
+                /* Act on the event */
+                var orderSnVal = orderSn.val()
+                if (!orderSnVal) {
+                    alert('订单号不能为空!')
+                    return
+                }
+                var urljson = url + 'brand=' + brand + '&orderSn=' + orderSnVal
+                console.log('urljson', urljson)
+                $.ajax({
+                  async: false,
+                  url: urljson,
+                  success: function(data) {
+                    var errorResult = data.errorResult
+                    if (errorResult !== '') {
+                        alert(errorResult)
+                        return
+                    }
+                    var parts = data.parts
+                    var dom = ""
+                    for (var i = 0, len = parts.length; i < len; i++) {
+                        var part = parts[i]
+                        var time = part.time.substring(0, 10)
+                        if (i === 0) {
+                            dom += "<div class='rowactive row'><div class='col-md-3'><p>" + time + "</p></div><div class='col-md-1'><div></div></div><div class='col-md-8'><p>" + part.processInfo + "</p></div></div>"
+                        } else if (i>2) {
+                            dom += "<div class='row rowexpend hide'><div class='col-md-3'><p>" + time + "</p></div><div class='col-md-1'><div></div></div><div class='col-md-8'><p>" + part.processInfo + "</p></div></div>"
+
+                        } else {
+                            dom += "<div class='row'><div class='col-md-3'><p>" + time + "</p></div><div class='col-md-1'><div></div></div><div class='col-md-8'><p>" + part.processInfo + "</p></div></div>"
+                        }
+                    }
+                    $('.mj-service-box__result').append(dom)
+                  },
+                  error: function(data){
+                    alert(data.errorResult)
+                  }
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>

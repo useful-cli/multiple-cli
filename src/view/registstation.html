@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @@include('../template/meta.html')
+    <title>妙寄智慧社区--注册</title>
+    <link rel="shortcut icon" href="../assets/images/logo.ico" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/main.min.css">
+</head>
+
+<body>
+    <div class="mj container-fluid">
+        @@include('../template/header.html')
+        <div class="mj-registstation">
+          <div class="mj-registstation-form">
+            <form class="form-horizontal" id="registstationForm">
+              <div class="form-group">
+                <label for="stationPhone">手机号</label>
+                <input type="text" class="form-control" id="stationPhone" placeholder="手机号" name="mobile" required>
+              </div>
+              <div class="form-group">
+                <label for="stationName">站点名称</label>
+                <input type="text" class="form-control" id="stationName" placeholder="站点名称" minlength="2" maxlength="60" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="stationPwd">密码</label>
+                <input type="password" class="form-control" id="stationPwd" placeholder="密码" name="password" required>
+              </div>
+              <div class="form-group">
+                <label for="stationPwdRepeat">重复密码</label>
+                <input type="password" class="form-control" id="stationPwdRepeat" placeholder="重复密码" name="passwordrepeat" required>
+              </div>
+              <button id="regist-submit" class="btn btn-default">提交</button>
+              <button id="regist-clear" class="btn btn-primary">清空</button>
+            </form>
+          </div>
+        </div>
+    </div>
+    @@include('../template/footer.html')
+    <script src="../assets/js/lib/jquery-3.1.1.min.js"></script>
+    <script src="../assets/js/lib/bootstrap.min.js"></script>
+    <script src="../assets/js/lib/jquery.validate.min.js"></script>
+    <script src="../assets/js/main.min.js"></script>
+    <script>
+    jQuery.validator.addMethod("realPhone", function(value, element) {
+      return this.optional(element) || /^1[34578]\d{9}$/.test(value);
+    }, '请输入正确的手机号!');
+    jQuery.validator.addMethod("pwdRepeat", function(value, element) {
+      var pwdVal = $("#stationPwd").val()
+      var isSame = value === pwdVal
+      return this.optional(element) || isSame;
+    }, '两次密码不一致!');
+    var validator = $( "#registstationForm" ).validate({});
+    $("#stationPhone").rules("add", {
+        realPhone: true,
+        required: true,
+        messages: {
+          required: "请输入手机号"
+        }
+    })
+    $("#stationName").rules("add", {
+        required: true,
+        messages: {
+          required: "请输入站点名称"
+        }
+    })
+    $("#stationPwd").rules("add", {
+        required: true,
+        messages: {
+          required: "请输入密码"
+        }
+    })
+    $("#stationPwdRepeat").rules("add", {
+        pwdRepeat: true,
+        required: true,
+        messages: {
+          required: "请输入密码"
+        }
+    })
+    // 获取表单中的信息
+    function getInputVal () {
+      var mobile = $('#stationPhone').val()
+      var name = $('#stationName').val()
+      var password = $('#stationPwd').val()
+      return {
+        mobile,
+        name,
+        password
+      }
+    }
+    // 提交
+    var submit = $('#regist-submit')
+    // var registstationUrl = 'http://192.168.0.168:8088/quandiExpressSite/StationUser/registerStationUser';
+    // var registstationUrl = 'http://app.quandikeji.com:8088/quandiExpressSite/StationUser/registerStationUser';
+    var registstationUrl = 'http://app.quandikeji.com:8088/quandiExpressSite1.4.0/StationUser/registerStationUser';
+    submit.on('click', null, function(event) {
+        event.preventDefault();
+        var registData = getInputVal()
+        if (!validator.form()) {
+            console.log('validator not done')
+            return
+        }
+        $.ajax({
+          async: false,
+          method: 'post',
+          datatype: 'json',
+          url: registstationUrl,
+          data: {"param": JSON.stringify(registData)},
+          success: function(data) {
+            alert(data.mess)
+          },
+          error: function(data){
+            alert(data.mess)
+          }
+        })
+    });
+    // 清空
+    var clear = $('#regist-clear')
+    clear.on('click', null, function(event) {
+        event.preventDefault();
+        var input = $('input')
+        for (var i = 0, len = input.length; i < len; i++) {
+            var it = input.eq(i)
+            it.val('')
+        }
+    });
+    </script>
+</body>
+
+</html>

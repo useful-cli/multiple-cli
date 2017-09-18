@@ -1,0 +1,27 @@
+@import "font";
+@import "color";
+
+.normal-shadow {
+	box-shadow: 1px 1px 20px #999;
+}
+
+.mj {
+	&-registstation {
+		padding: 20px;
+		&-form {
+			form {
+				margin: auto;
+				max-width: 220px;
+				label {
+					padding: 6px;
+					font-size: 14px;
+				}
+				label.error {
+					font-size: 13px;
+					font-weight: 100;
+					color: crimson;
+				}
+			}
+		}
+	}
+}

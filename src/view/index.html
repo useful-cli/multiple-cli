@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @@include('../template/meta.html')
-    <title>首页</title>
+    <title>妙寄智慧社区</title>
     <script type="text/javascript" charset="utf-8">
         function indexbrowserRedirect() {
             var sUserAgent = navigator.userAgent.toLowerCase();
@@ -273,12 +273,12 @@
             modal.addClass('hide')
         });
 
-        var joinUsUrl = 'http://192.168.0.251:8080/MijiWeb/joinInsert.action?param='
-        // var joinUsUrl = 'qpp.quandikeji.com:8088/MijiWeb/joinInsert.action?'
+        // var joinUsUrl = 'http://192.168.0.251:8080/MijiWeb/joinInsert.action?param='
+        var joinUsUrl = 'http://app.quandikeji.com:8188/MijiWeb/joinInsert.action?param='
         // var param = "{'name':'王大锤','mobile':'13407249293','storeName':'7间客栈','Freelanding':'TWlqaVdlYi9qb2luSW5zZXJ0LmFjdGlvbg=='}"
         var param = {}
         var join_name, join_mobile, join_storename
-        var Freelanding = 'TWlqaVdlYi9qb2luSW5zZXJ0LmFjdGlvbg'
+        var Freelanding = 'TWlqaVdlYi9qb2luSW5zZXJ0LmFjdGlvbg=='
         
         function checkPhone(phone){ 
             if(!(/^1[34578]\d{9}$/.test(phone))){ 
@@ -302,7 +302,11 @@
 
                 var posturl = joinUsUrl + JSON.stringify(param)
                 console.log('posturl', posturl)
-                $.post(posturl, function(data) {
+                $.post(posturl, {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                }, function(data) {
                     console.log('data', data)
                     console.log('data', typeof data)
                     data = JSON.parse(data)
@@ -314,7 +318,7 @@
                     }
                 })
                 .fail(function (data) {
-                    console.log('data', data)
+                    console.log('data err', data)
                     alert("门店申请失败，请重新尝试");
                 })
             }

@@ -8,17 +8,181 @@
 .mj {
 	&-service {
 		  min-height: 642px;
-		  height: 642px;
+		  *height: 642px;
 		  width: 100%;
 		  text-align: center;
 		  padding-top: 51px;
+		  padding-bottom: 51px;
 		  background-image: url('../images/download/dow_map.png');
 		  background-repeat: no-repeat;
 		  background-position: 50% 30px;
 		  &-box {
 		  	display: inline-block;
-		  	width: 56%;
-		  	
+		  	width: 83%;
+		  	&__title {
+		  		line-height: 50px;
+		  		font-size: 18px;
+		  		p {
+		  			border: 1px solid @dark-yellow;
+		  		}
+		  		color: @dark-yellow;
+		  	}
+		  	.col-md-10 {
+		  		padding-right: 13%;
+		  	}
+		  	&__search {
+		  		input {
+		  			margin-right: 20px;
+		  			padding-left: 15px;
+		  			width: 60%;
+		  			height: 50px;
+		  		}
+		  		button {
+		  			font-size: 18px;
+		  			width: 90px;
+		  			height: 50px;
+		  			color: white;
+		  			background-color: @dark-yellow;
+		  		}
+		  	}
+
+		  	&__picker {
+		  		margin-top: 15px;
+		  		background: white;
+		  		padding: 15px;
+		  		p {
+		  			padding: 5px;
+		  			color: #666;
+		  			span {
+		  				color: @dark-yellow;
+		  				float: right;
+		  				cursor: pointer;
+		  				&:after {
+		  					clear: both;
+		  					content: '';
+		  				}
+		  			}
+		  		}
+		  		ul {
+		  			padding: 15px 0;
+		  			height: 60px;
+		  			li {
+		  				float: left;
+		  				width: 18%;
+		  				list-style-type: none;
+		  				border: 1px solid #ccc;
+		  				border-radius: 5%;
+		  				margin: 0 1%;
+		  				padding: 7px .7%;
+		  				color: #666;
+		  				cursor: pointer;
+		  				max-height: 36px;
+		  				white-space: nowrap;
+		  				overflow: hidden;
+		  				&:hover {
+		  					background: @dark-yellow;
+		  					color: white;
+		  				}
+		  				span {
+		  					font-size: 14px;
+		  				}
+		  				img {
+		  					vertical-align: middle;
+		  					max-width: 23px;
+		  					width: 24%;
+		  					border-radius: 20%;
+		  				}
+		  			}
+		  		}
+		  	}
+
+		  	&__result {
+		  		padding: 15px;
+		  		margin-top: 20px;
+		  		background-color: white;
+		  		p {
+		  			padding: 5px;
+		  			padding-bottom: 20px;
+		  			color: #666;
+		  			span {
+		  				color: @dark-yellow;
+		  				float: right;
+		  				cursor: pointer;
+		  				&:after {
+		  					clear: both;
+		  					content: '';
+		  				}
+		  			}
+		  		}
+
+		  		div.rowactive {
+		  			.col-md-3, .col-md-8 {
+		  				p {
+		  					color: @dark-yellow;
+		  				}
+		  			}
+		  			.col-md-1 {
+		  				span,div {
+		  					background: @dark-yellow;
+		  				}
+
+		  				&:before {
+		  					background: @dark-yellow;
+		  				}
+		  			}
+		  		}
+
+		  		.row {
+		  			&:last-child {
+		  				.col-md-1 {
+		  					div {
+									height: 0;
+		  					}
+		  				}
+		  			}
+		  			.col-md-3 {
+		  				color: #666;
+		  			}
+		  			.col-md-8 {
+		  				p {
+		  					text-align: left;
+		  				}
+		  			}
+		  			.col-md-1 {
+		  				span {
+		  					width: 9px;
+		  					height: 9px;
+		  					display: inline-block;
+		  					background: #666;
+		  					border-radius: 50%;
+		  				}
+	  					&:before {
+	  						content: '';
+	  						display: inline-block;
+	  						width: 8px;
+	  						height: 8px;
+	  						background: #666;
+	  						border-radius: 50%;
+	  					}
+		  				div {
+		  					height: 30px;
+		  					width: 2px;
+		  					background: #666;
+		  					margin: auto;
+		  				}
+
+		  			}
+
+		  		}
+		  	}
 		  }
+	}
+}
+
+.liactive {
+	background: @dark-yellow;
+	border: none!important;
+	span {
+		color: white;
 	}
 }
