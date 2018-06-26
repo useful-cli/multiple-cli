@@ -27,6 +27,26 @@
                 <label for="stationName">站点名称</label>
                 <input type="text" class="form-control" id="stationName" placeholder="站点名称" minlength="2" maxlength="60" name="name" required>
               </div>
+              <div id="distpicker1" class="form-group distpicker-form">
+                <select id="province" name="province" required></select>
+                <select id="city" name="city" required></select>
+                <select id="district" name="district" required></select>
+              </div>
+              <div class="form-group">
+                  <label for="appType">app版本</label>
+                  <select id="appType" name="appType" required>
+                    <option value="0">正式版</option>
+                    <option value="1">点货版</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="street">街道</label>
+                  <input type="text" class="form-control" id="street" placeholder="街道" name="street">
+              </div>
+              <div class="form-group">
+                  <label for="description">详细地址</label>
+                  <input type="text" class="form-control" id="description" placeholder="详细地址" name="description">
+              </div>
               <div class="form-group">
                 <label for="stationPwd">密码</label>
                 <input type="password" class="form-control" id="stationPwd" placeholder="密码" name="password" required>
@@ -45,8 +65,14 @@
     <script src="../assets/js/lib/jquery-3.1.1.min.js"></script>
     <script src="../assets/js/lib/bootstrap.min.js"></script>
     <script src="../assets/js/lib/jquery.validate.min.js"></script>
+    <script src="../assets/js/lib/distpicker.js"></script>
     <script src="../assets/js/main.min.js"></script>
     <script>
+    $("#distpicker1").distpicker({
+      province: '---- 所在省 ----',
+      city: '---- 所在市 ----',
+      district: '---- 所在区 ----'
+    });
     jQuery.validator.addMethod("realPhone", function(value, element) {
       return this.optional(element) || /^1[34578]\d{9}$/.test(value);
     }, '请输入正确的手机号!');
@@ -69,6 +95,36 @@
           required: "请输入站点名称"
         }
     })
+    $("#province").rules("add", {
+        required: true,
+        messages: {
+          required: "请选择省份"
+        }
+    })
+    $("#city").rules("add", {
+        required: true,
+        messages: {
+          required: "请选择城市"
+        }
+    })
+    $("#district").rules("add", {
+        required: true,
+        messages: {
+          required: "请选择区/县"
+        }
+    })
+    $("#appType").rules("add", {
+        required: true,
+        messages: {
+          required: "请选择app版本"
+        }
+    })
+    $("#description").rules("add", {
+        required: true,
+        messages: {
+          required: "请填写详细地址"
+        }
+    })
     $("#stationPwd").rules("add", {
         required: true,
         messages: {
@@ -86,18 +142,41 @@
     function getInputVal () {
       var mobile = $('#stationPhone').val()
       var name = $('#stationName').val()
+      var province = $('#province').val()
+      var city = $('#city').val()
+      var district = $('#district').val()
+      var street = $('#street').val()
+      var description = $('#description').val()
+      var isBeta = $('#appType').val()
       var password = $('#stationPwd').val()
+
+      province = province.replace('省', '')
+      province = province.replace('市', '')
+      province = province.replace('自治区', '')
+      province = province.replace('壮族自治区', '')
+      province = province.replace('回族自治区', '')
+      province = province.replace('特别行政区', '')
+      city = city.replace('市', '')
+      city = city.replace('城区', '')
       return {
         mobile,
         name,
-        password
+        password,
+        province,
+        city,
+        district,
+        street,
+        description,
+        isBeta,
       }
     }
     // 提交
     var submit = $('#regist-submit')
     // var registstationUrl = 'http://192.168.0.168:8088/quandiExpressSite/StationUser/registerStationUser';
     // var registstationUrl = 'http://app.quandikeji.com:8088/quandiExpressSite/StationUser/registerStationUser';
-    var registstationUrl = 'http://app.quandikeji.com:8088/quandiExpressSite1.4.0/StationUser/registerStationUser';
+    // var registstationUrl = 'http://app.quandikeji.com:8088/quandiExpressSite1.4.0/StationUser/registerStationUser';
+    var registstationUrl = 'http://app.quandikeji.com:8288/quandiExpressSiteSimple/StationUser/registerStationUser';
+    // var registstationUrl = 'http://192.168.231.50:8088/quandiExpressSiteSimple/StationUser/registerStationUser';
     submit.on('click', null, function(event) {
         event.preventDefault();
         var registData = getInputVal()

@@ -32,7 +32,7 @@
                                 <li value="顺丰">
                                     <img src="../assets/images/expresslogo/shunfeng.png" alt="顺丰">
                                     <span>顺丰快递</span>
-                                </li>   
+                                </li>
                                 <li value="申通">
                                     <img src="../assets/images/expresslogo/shentong.png" alt="申通">
                                     <span>申通快递</span>
@@ -179,8 +179,9 @@
             var brand = '圆通'
             var searchBtn = $('#searchBtn')
             var orderSn = $('#ordersn')
-            var url = 'http://app.quandikeji.com:8088/quandiExpressSite1.4.0/Logistics/queryLogisticsInfoForJson?'
-            // var url = 'http://192.168.0.168:8890/quandiExpressSite/Logistics/queryLogisticsInfoForJson?'
+            // var url = 'http://app.quandikeji.com:8088/quandiExpressSite1.4.0/Logistics/queryLogisticsInfoForJson?'
+            // var url = 'http://192.168.231.112:8081/ExpressCompany/ExpressOperation/KdniaoTrackQuery'
+            var url = 'http://www.mijihome.cn:8088/ExpressCompany/ExpressOperation/KdniaoTrackQuery'
             exportEx.on('click', function () {
                 var exptendUl = $('ul.exptend-ex')
                 exptendUl.toggleClass('hide')
@@ -208,35 +209,43 @@
                     alert('订单号不能为空!')
                     return
                 }
-                var urljson = url + 'brand=' + brand + '&orderSn=' + orderSnVal
-                console.log('urljson', urljson)
+                var ajaxData = {
+                    expCode: 'ZTO',
+                    expNo: '475573183494'
+                };
+                ajaxData = JSON.stringify(ajaxData)
                 $.ajax({
                   async: false,
-                  url: urljson,
+                  url: url,
+                  type: 'POST',
+                  data: {
+                      param: ajaxData
+                  },
                   success: function(data) {
-                    var errorResult = data.errorResult
-                    if (errorResult !== '') {
-                        alert(errorResult)
+                    var code = data.code
+                    if (code !== 200) {
+                        alert(data.mess)
                         return
                     }
-                    var parts = data.parts
+                    var parts = data.obj.Traces
                     var dom = ""
                     for (var i = 0, len = parts.length; i < len; i++) {
                         var part = parts[i]
-                        var time = part.time.substring(0, 10)
-                        if (i === 0) {
-                            dom += "<div class='rowactive row'><div class='col-md-3'><p>" + time + "</p></div><div class='col-md-1'><div></div></div><div class='col-md-8'><p>" + part.processInfo + "</p></div></div>"
-                        } else if (i>2) {
-                            dom += "<div class='row rowexpend hide'><div class='col-md-3'><p>" + time + "</p></div><div class='col-md-1'><div></div></div><div class='col-md-8'><p>" + part.processInfo + "</p></div></div>"
+                        // var time = part.time.substring(0, 10)
+                        dom += "<div class='row'><div class='col-md-3'><p>" + part.AcceptTime + "</p></div><div class='col-md-1'><div></div></div><div class='col-md-8'><p>" + part.AcceptStation + "</p></div></div>"
+                        // if (i === 0) {
+                        //     dom += "<div class='rowactive row'><div class='col-md-3'><p>" + time + "</p></div><div class='col-md-1'><div></div></div><div class='col-md-8'><p>" + part.processInfo + "</p></div></div>"
+                        // } else if (i>2) {
+                        //     dom += "<div class='row rowexpend hide'><div class='col-md-3'><p>" + time + "</p></div><div class='col-md-1'><div></div></div><div class='col-md-8'><p>" + part.processInfo + "</p></div></div>"
 
-                        } else {
-                            dom += "<div class='row'><div class='col-md-3'><p>" + time + "</p></div><div class='col-md-1'><div></div></div><div class='col-md-8'><p>" + part.processInfo + "</p></div></div>"
-                        }
+                        // } else {
+                        //     dom += "<div class='row'><div class='col-md-3'><p>" + time + "</p></div><div class='col-md-1'><div></div></div><div class='col-md-8'><p>" + part.processInfo + "</p></div></div>"
+                        // }
                     }
                     $('.mj-service-box__result').append(dom)
                   },
                   error: function(data){
-                    alert(data.errorResult)
+                    // alert(data.errorResult)
                   }
                 })
             })
