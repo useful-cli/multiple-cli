@@ -56,11 +56,10 @@
                     <div class="mj-search-box-tools">
                         <select name="express" placeholder="请选择快递公司" id="brand">
                             <option value="" class="hide">请选择快递公司</option>
-                            <option value="菜鸟联盟">菜鸟联盟</option>
-                            <option value="顺丰">顺丰快递</option>
-                            <option value="圆通">圆通快递</option>
-                            <option value="申通">申通快递</option>
-                            <option value="韵达">韵达快递</option>
+                            <option value="SF">顺丰快递</option>
+                            <option value="YTO">圆通快递</option>
+                            <option value="STO">申通快递</option>
+                            <option value="YD">韵达快递</option>
                         </select>
                         <input type="text" name="" value="" placeholder="请输入运单号" id="orderSn">
                         <button type="button" class="" id="express-search">查询</button>
@@ -239,14 +238,13 @@
 
         var expressBtn = $('#express-search');
         function jumpToExpressSearch () {
-            var baseUrl = 'http://app.quandikeji.com:8088/quandiExpressSite/Logistics/queryLogisticsInfo?';
+            var baseUrl = '/view/service.html?';
             var brand = $('#brand').val();
-            console.log('asd', brand)
             var orderSn = $('#orderSn').val();
             if (!orderSn) {
                 return alert('订单号不能为空!')
             }
-            var jumpUrl = baseUrl + 'brand=' + brand + '&orderSn=' + orderSn; 
+            var jumpUrl = baseUrl + 'expCode=' + brand + '&expNo=' + orderSn; 
             window.open(jumpUrl);
         }
 

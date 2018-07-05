@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @@include('../template/meta.html')
-    <title>妙寄智慧社区--注册</title>
+    <title>妙寄智慧社区——注册</title>
     <link rel="shortcut icon" href="../assets/images/logo.ico" />
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
@@ -32,6 +32,12 @@
                 <select id="city" name="city" required></select>
                 <select id="district" name="district" required></select>
               </div>
+
+              <div class="form-group distpicker-form">
+                <select id="location" name="location" required>
+                </select>
+              </div>
+
               <div class="form-group">
                   <label for="appType">app版本</label>
                   <select id="appType" name="appType" required>
@@ -66,13 +72,21 @@
     <script src="../assets/js/lib/bootstrap.min.js"></script>
     <script src="../assets/js/lib/jquery.validate.min.js"></script>
     <script src="../assets/js/lib/distpicker.js"></script>
+    <script src="../assets/js/location.js"></script>
     <script src="../assets/js/main.min.js"></script>
     <script>
+    var locationData = locationJS;
+    console.log('locationData', locationData);
     $("#distpicker1").distpicker({
       province: '---- 所在省 ----',
       city: '---- 所在市 ----',
       district: '---- 所在区 ----'
     });
+    var locationSelect = $('#location');
+    for (let index = 0; index < locationData.length; index++) {
+      let text = locationData[index]['province'] + locationData[index]['city'] + locationData[index]['district']
+      locationSelect.append("<option value='"+locationData[index]['id']+"'>"+text+"</option>");
+    }
     jQuery.validator.addMethod("realPhone", function(value, element) {
       return this.optional(element) || /^1[34578]\d{9}$/.test(value);
     }, '请输入正确的手机号!');
@@ -81,6 +95,32 @@
       var isSame = value === pwdVal
       return this.optional(element) || isSame;
     }, '两次密码不一致!');
+    jQuery.validator.addMethod("minPwd", function(value, element) {
+      var length = value.length
+      if(length<6||length>30){
+        return false;
+      }
+      return true;
+    }, '密码长度要在6~30位之间!');
+    jQuery.validator.addMethod("mixPwd", function(value, element) {
+      var v =$.trim(value);
+      if(v.length<6||v.length>30){
+        return false;
+      }
+      if(/^\d+$/.test(v))
+      {
+        return false;
+      }
+      if(/^[a-z]+$/i.test(v))
+      {
+        return false;
+      }
+      if(!/^[A-Za-z0-9]+$/.test(v))
+      {
+        return false;
+      }
+      return true;
+    }, '密码要是字母和数字的组合!');
     var validator = $( "#registstationForm" ).validate({});
     $("#stationPhone").rules("add", {
         realPhone: true,
@@ -127,6 +167,8 @@
     })
     $("#stationPwd").rules("add", {
         required: true,
+        minPwd: true,
+        mixPwd: true,
         messages: {
           required: "请输入密码"
         }
