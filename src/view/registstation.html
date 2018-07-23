@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/main.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -27,15 +29,19 @@
                 <label for="stationName">站点名称</label>
                 <input type="text" class="form-control" id="stationName" placeholder="站点名称" minlength="2" maxlength="60" name="name" required>
               </div>
-              <div id="distpicker1" class="form-group distpicker-form">
-                <select id="province" name="province" required></select>
-                <select id="city" name="city" required></select>
-                <select id="district" name="district" required></select>
-              </div>
 
               <div class="form-group distpicker-form">
-                <select id="location" name="location" required>
+                <select class="js-example-disabled-results" id="location" name="locationId" required>
                 </select>
+              </div>
+
+              <div class="form-group">
+                  <label for="dataSource">所属区域</label>
+                  <select id="dataSource" name="dataSource" required>
+                    <option value="1">上海</option>
+                    <option value="2">山西</option>
+                    <option value="3">其他</option>
+                  </select>
               </div>
 
               <div class="form-group">
@@ -72,21 +78,18 @@
     <script src="../assets/js/lib/bootstrap.min.js"></script>
     <script src="../assets/js/lib/jquery.validate.min.js"></script>
     <script src="../assets/js/lib/distpicker.js"></script>
-    <script src="../assets/js/location.js"></script>
+    <script src="../assets/js/lib/location.js"></script>
     <script src="../assets/js/main.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script>
     var locationData = locationJS;
-    console.log('locationData', locationData);
-    $("#distpicker1").distpicker({
-      province: '---- 所在省 ----',
-      city: '---- 所在市 ----',
-      district: '---- 所在区 ----'
-    });
     var locationSelect = $('#location');
-    for (let index = 0; index < locationData.length; index++) {
-      let text = locationData[index]['province'] + locationData[index]['city'] + locationData[index]['district']
+    for (var index = 0; index < locationData.length; index++ ) {
+      var text = locationData[index]['province'] + locationData[index]['city'] + locationData[index]['district'];
       locationSelect.append("<option value='"+locationData[index]['id']+"'>"+text+"</option>");
     }
+    var $disabledResults = $(".js-example-disabled-results");
+    $disabledResults.select2();
     jQuery.validator.addMethod("realPhone", function(value, element) {
       return this.optional(element) || /^1[34578]\d{9}$/.test(value);
     }, '请输入正确的手机号!');
@@ -135,24 +138,21 @@
           required: "请输入站点名称"
         }
     })
-    $("#province").rules("add", {
+
+    $("#location").rules("add", {
         required: true,
         messages: {
-          required: "请选择省份"
+          required: "请选择省市区"
         }
     })
-    $("#city").rules("add", {
+
+    $("#dataSource").rules("add", {
         required: true,
         messages: {
-          required: "请选择城市"
+          required: "请选择数据源"
         }
     })
-    $("#district").rules("add", {
-        required: true,
-        messages: {
-          required: "请选择区/县"
-        }
-    })
+
     $("#appType").rules("add", {
         required: true,
         messages: {
@@ -184,32 +184,24 @@
     function getInputVal () {
       var mobile = $('#stationPhone').val()
       var name = $('#stationName').val()
-      var province = $('#province').val()
-      var city = $('#city').val()
-      var district = $('#district').val()
+
+      var locationId = $('#location').val()
+      var dataSource = $('#dataSource').val()
+
       var street = $('#street').val()
       var description = $('#description').val()
       var isBeta = $('#appType').val()
       var password = $('#stationPwd').val()
 
-      province = province.replace('省', '')
-      province = province.replace('市', '')
-      province = province.replace('自治区', '')
-      province = province.replace('壮族自治区', '')
-      province = province.replace('回族自治区', '')
-      province = province.replace('特别行政区', '')
-      city = city.replace('市', '')
-      city = city.replace('城区', '')
       return {
-        mobile,
-        name,
-        password,
-        province,
-        city,
-        district,
-        street,
-        description,
-        isBeta,
+        mobile: mobile,
+        name: name,
+        password: password,
+        locationId: locationId,
+        dataSource: dataSource,
+        street: street,
+        description: description,
+        isBeta: isBeta,
       }
     }
     // 提交
@@ -217,7 +209,8 @@
     // var registstationUrl = 'http://192.168.0.168:8088/quandiExpressSite/StationUser/registerStationUser';
     // var registstationUrl = 'http://app.quandikeji.com:8088/quandiExpressSite/StationUser/registerStationUser';
     // var registstationUrl = 'http://app.quandikeji.com:8088/quandiExpressSite1.4.0/StationUser/registerStationUser';
-    var registstationUrl = 'http://app.quandikeji.com:8288/quandiExpressSiteSimple/StationUser/registerStationUser';
+    // var registstationUrl = 'http://app.quandikeji.com:8288/quandiExpressSiteSimple/StationUser/registerStationUser';
+    var registstationUrl = 'http://main.mijihome.cn:8088/quandiExpressSiteSimple/StationUser/registerStationUser';
     // var registstationUrl = 'http://192.168.231.50:8088/quandiExpressSiteSimple/StationUser/registerStationUser';
     submit.on('click', null, function(event) {
         event.preventDefault();
