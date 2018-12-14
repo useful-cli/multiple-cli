@@ -34,12 +34,11 @@
                 </div>
               </div>
 
-              <div class="form-group distpicker-form">
-                <select class="js-example-disabled-results" id="location" name="locationId" required>
-                </select>
-              </div>
-
               <div class="form-group distpicker-form" style="min-width: 420px;">
+                <label for="id_label_single">
+                    请选择省市区
+                </label>
+                <br>
                 <select class="js-example-disabled-results" style="width: 30%" id="location1" name="locationId1" required></select>
                 <select class="js-example-disabled-results" style="width: 30%" id="location2" name="locationId2" required></select>
                 <select class="js-example-disabled-results" style="width: 30%" id="location3" name="locationId3" required></select>
@@ -79,24 +78,12 @@
     <script src="../assets/js/lib/bootstrap.min.js"></script>
     <script src="../assets/js/lib/jquery.validate.min.js"></script>
     <script src="../assets/js/lib/distpicker.js"></script>
-    <script src="../assets/js/lib/location.js"></script>
     <script src="../assets/js/main.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script>
-    // 获取locationjs中的省市区数据
-    var locationData = locationJS;
-    // 初始化 select2 插件，复制到 #location 元素上
-    var locationSelect = $('#location');
-    for (var index = 0; index < locationData.length; index++ ) {
-      var text = locationData[index]['province'] + locationData[index]['city'] + locationData[index]['district'];
-      locationSelect.append("<option value='"+locationData[index]['id']+"'>"+text+"</option>");
-    }
-    locationSelect.select2({
-      placeholder: '选择省市区'
-    });
 
     function getRegin ($location, registData) {
-      var selectLocationUrl = 'http://106.15.228.21:8088/quandiExpressSiteSimple/StationUser/findRegion';
+      var selectLocationUrl = 'http://main.mijihome.cn:8088/quandiExpressSiteSimple/StationUser/findRegion';
       var locationData = [];
       $.ajax({
         async: false,
@@ -109,7 +96,8 @@
           locationData = data.obj;
           for (var index = 0; index < locationData.length; index++ ) {
             var text = locationData[index]['name'];
-            $location.append("<option value='"+locationData[index]['code']+"'>"+text+"</option>");
+            var value = locationData[index]['code'] + ',' + locationData[index]['level'] + ',' + locationData[index]['name']
+            $location.append("<option value='"+value+"'>"+text+"</option>");
           }
           $location.select2();
         },
@@ -136,8 +124,30 @@
       'level': 2
     });
 
+    // 省变化后的事件
+    function handleSelectChange ($location, $next1) {
+      var locationValue = $location.val();
+      locationValue = locationValue.split(',')
+      locationValue = {
+        code: locationValue[0],
+        level: locationValue[1]
+      }
+      $next1.empty();
+      getRegin($next1, locationValue);
+    }
+
+    $location1.change(function () {
+      handleSelectChange($location1, $location2)
+      // 市选择框会直接算中值，所以需要给区进行赋值
+      handleSelectChange($location2, $location3)
+    })
+    // 市变化后事件
+    $location2.change(function () {
+      handleSelectChange($location2, $location3)
+    })
+
     jQuery.validator.addMethod("realPhone", function(value, element) {
-      return this.optional(element) || /^1[34578]\d{9}$/.test(value);
+      return this.optional(element) || /^1[3456789]\d{9}$/.test(value);
     }, '请输入正确的手机号!');
     jQuery.validator.addMethod("pwdRepeat", function(value, element) {
       var pwdVal = $("#stationPwd").val()
@@ -185,7 +195,7 @@
         }
     })
 
-    $("#location").rules("add", {
+    $("#location1").rules("add", {
         required: true,
         messages: {
           required: "请选择省市区"
@@ -223,18 +233,22 @@
     function getInputVal () {
       var mobile = $('#stationPhone').val()
       var name = $('#stationName').val()
-      var locationId = $('#location').val()
+      var locationId = $('#location3').val()
+      locationId = locationId.split(',')
       var street = $('#street').val()
       var description = $('#description').val()
       var isBeta = $('#appType').val()
       var password = $('#stationPwd').val()
-      var dataSource = getdataSourceBylocation(locationId)
+      // 根据选择的省份 来判断 dataSource
+      var location1Value = $('#location1').val()
+      location1Value = location1Value.split(',')
+      var dataSource = getdataSourceBylocation(location1Value[2])
       name = '妙寄' + name + '店'
       return {
         mobile: mobile,
         name: name,
         password: password,
-        locationId: locationId,
+        locationId: locationId[0],
         dataSource: dataSource,
         street: street,
         description: description,
@@ -243,9 +257,7 @@
     }
 
     // 根据地址判断 dataSource
-    function getdataSourceBylocation (locationId) {
-      var location = locationData[locationId]
-      var province = location['province']
+    function getdataSourceBylocation (province) {
       var dataSource = '3'
       if (province === '上海' || province === '广东') {
         dataSource = '1'
