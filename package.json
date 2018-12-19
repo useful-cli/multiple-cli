@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",
-    "browser-sync": "^2.18.8",
+    "browser-sync": "^2.26.3",
     "browserify": "^14.1.0",
     "concat": "^3.0.0",
     "cross-env": "^3.2.4",
@@ -55,15 +55,18 @@
     "gulp-util": "^3.0.8",
     "gulp-watch-path": "^0.1.0",
     "gulp-wrap": "^0.13.0",
-    "jshint": "^2.9.4",
+    "jshint": "^2.9.7",
     "jshint-stylish": "^2.2.1",
     "postcss-reporter": "^3.0.0",
     "precss": "^1.4.0",
     "pretty-hrtime": "^1.0.3",
     "rename": "^1.0.4",
-    "require-dir": "^0.3.1",
+    "require-dir": "^0.3.2",
     "run-sequence": "^1.2.2",
     "stream-combiner2": "^1.1.1",
     "stylelint": "^7.9.0"
+  },
+  "dependencies": {
+    "ajv": "^6.6.2"
   }
 }

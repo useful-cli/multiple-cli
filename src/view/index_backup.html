@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @@include('../template/meta.html')
+    <title>妙寄智慧社区</title>
+    <script type="text/javascript" charset="utf-8">
+        function indexbrowserRedirect() {
+            var sUserAgent = navigator.userAgent.toLowerCase();
+            var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+            var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+            var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+            var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+            var bIsAndroid = sUserAgent.match(/android/i) == "android";
+            var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+            var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+            if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM){
+                window.location.href='../index.html';
+            }
+        }
+        indexbrowserRedirect();
+    </script>
+    <link rel="shortcut icon" href="../assets/images/logo.ico" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/city-picker.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/main.min.css">
+</head>
+
+<body>
+    <div class="mj container-fluid">
+        @@include('../template/header.html')
+        <div class="mj-swiper swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <img src="../assets/images/banner/banner_fir.png" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="../assets/images/banner/banner_sec.png" alt="">
+                </div>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="mj-search row">
+            <div class="col-md-5">
+                <div class="mj-search-box">
+                    <p>物流信息查询</p>
+                    <div class="mj-search-box-tools">
+                        <select name="express" placeholder="请选择快递公司" id="brand">
+                            <option value="" class="hide">请选择快递公司</option>
+                            <option value="SF">顺丰快递</option>
+                            <option value="YTO">圆通快递</option>
+                            <option value="STO">申通快递</option>
+                            <option value="YD">韵达快递</option>
+                        </select>
+                        <input type="text" name="" value="" placeholder="请输入运单号" id="orderSn">
+                        <button type="button" class="" id="express-search">查询</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="mj-search-box">
+                    <p>服务站查询</p>
+                    <div class="mj-search-box-tools">
+                        <div class="mj-search-box-tools-city-picker">
+                            <input id="city-picker" readonly type="text" placeholder="请选择省市区">
+                        </div>
+                        <input style="width: 46%;" type="text" name="" value="" placeholder="请输入关键地址， 如小区名、大厦">
+                        <button type="button" class="btn btn-default" id="express-city">查询</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mj-data row">
+            <div class="mj-data-col col-md-4">
+                <div class="mj-data-col-txt">
+                    <img src="../assets/images/ico_peo.png" alt="覆盖人数">
+                    <span>1000000 +</span>
+                </div>
+                <div class="mj-data-col-detail">
+                    <span>覆盖人数</span>
+                </div>
+            </div>
+            <div class="mj-data-col col-md-4">
+                <div class="mj-data-col-txt">
+                    <img src="../assets/images/ico_rec.png" alt="累计揽件">
+                    <span>450000 +</span>
+                </div>
+                <div class="mj-data-col-detail">
+                    <span>累计揽件</span>
+                </div>
+            </div>
+            <div class="mj-data-col col-md-4">
+                <div class="mj-data-col-txt">
+                    <img src="../assets/images/ico_sen.png" alt="累计派件">
+                    <span>4200000 +</span>
+                </div>
+                <div class="mj-data-col-detail">
+                    <span>累计派件</span>
+                </div>
+            </div>
+        </div>
+        <div class="mj-intro">
+            <div class="mj-intro-title">
+                妙寄智慧社区介绍
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="../assets/images/img_mij.png" alt="品牌介绍">
+                </div>
+                <div class="col-md-7 mj-intro-content">
+                    妙寄品牌属于上海圈嘀科技有限公司，是以电商实体零售店＋O2O领域的新商业模式，新零售打通了传统线下渠道中，从品牌商到消费者的信息链条、实体展示、品质诚信；建立触端新物流，搭建城市、社区末端配送网络，解决最后100米，让线上电商与线下实体店有机结合，按需采购、消费升级、节时便利等元素融入本地社区生活，回归线下人际交流，并配合末端配送、自提等；最终实现妙寄•智慧社区的整个生态体系。
+                </div>
+            </div>
+        </div>
+        <div class="mj-superiority">
+            <div class="title">服务优势</div>
+            <div class="row">
+                <div class="col-md-3 padding-arround">
+                    <div class="express-bg">
+                        <div class="mj-superiority-default">
+                            <img src="../assets/images/ico_exp.png" alt="快递">
+                            <span>快递</span>
+                        </div>
+                        <div class="mj-superiority-hover">
+                            <div>
+                                终端快递市场巨大，收派两段，引入强大的流量入口。稳定的经济收入，直接提高现金流。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 padding-arround">
+                    <div class="tel-bg">
+                        <div class="mj-superiority-default">
+                            <img src="../assets/images/ico_tec.png" alt="技术">
+                            <span>技术</span>
+                        </div>
+                        <div class="mj-superiority-hover">
+                            <div>
+                                妙寄app，拥有强大的技术资源，集合各大快递公司终端派件系统，以及与第三方企业直接对接。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 padding-arround">
+                    <div class="ser-bg">
+                        <div class="mj-superiority-default">
+                            <img src="../assets/images/ico_ser.png" alt="服务">
+                            <span>服务</span>
+                        </div>
+                        <div class="mj-superiority-hover">
+                            <div>
+                                引入互联网终端社区服务，与全国和本土的服务平台打通直接拉近与消费者的互动。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 padding-arround">
+                    <div class="ele-bg">
+                        <div class="mj-superiority-default">
+                            <img src="../assets/images/ico_ele.png" alt="电商">
+                            <span>电商</span>
+                        </div>
+                        <div class="mj-superiority-hover">
+                            <div>
+                                导入各大互联网平台合作，直接将千万种电商产品代入线下实体店铺，让体验产生消费。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mj-joinus">
+            <button id="mj-joinus-btn">马上申请合作</button>
+        </div>
+        <div class="mj-modal hide" id="joinusModal">
+          <div class="mj-modal-title">
+              <i class="close"></i>
+          </div>
+          <div class="mj-modal-form">
+              <form>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="join_name" placeholder="请输入姓名">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="join_mobile" placeholder="请输入手机号">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="join_storename" placeholder="请输入门店名称">
+                </div>
+                <div class="tc">
+                   <button type="button" id="modal-submit" class="mj-modal-form--btn btn btn-default btn-lg">提交申请</button>
+                </div>
+              </form>
+          </div>
+        </div><!-- /.modal -->
+
+        <div class="mj-coservice">
+            <div class="mj-coservice-row row">
+                <div class="col-md-6 tl ">
+                    <a href="about.html" title="关于我们">关于我们</a>
+                </div>
+                <div class="col-md-6 tr">
+                    <i class="icon-phone"></i><span>客服电话：4008201563 (9:30-18:00在线) </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    @@include('../template/footer.html')
+    <script src="../assets/js/lib/jquery-3.1.1.min.js"></script>
+    <script src="../assets/js/lib/swiper.min.js"></script>
+    <script src="../assets/js/lib/bootstrap.min.js"></script>
+    <script src="../assets/js/lib/city-picker/city-picker.data.min.js"></script>
+    <script src="../assets/js/lib/city-picker/city-picker.min.js"></script>
+    <script src="../assets/js/main.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var mjSwiper = new Swiper('.swiper-container', {
+            speed: 400,
+            loop: true,
+            // If we need pagination
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            centeredSlides: true,
+            autoplay: 2500,
+            autoplayDisableOnInteraction: false
+        })
+
+        $("#city-picker").citypicker();
+
+        var expressBtn = $('#express-search');
+        function jumpToExpressSearch () {
+            var baseUrl = '/view/service.html?';
+            var brand = $('#brand').val();
+            var orderSn = $('#orderSn').val();
+            if (!orderSn) {
+                return alert('订单号不能为空!')
+            }
+            var jumpUrl = baseUrl + 'expCode=' + brand + '&expNo=' + orderSn; 
+            window.open(jumpUrl);
+        }
+
+        expressBtn.click(function(event) {
+            /* Act on the event */
+            jumpToExpressSearch();
+        });
+
+        var cityBtn = $('#express-city');
+
+        cityBtn.click(function(event) {
+            /* Act on the event */
+            alert('暂未开通， 敬请期待')
+        });
+
+        var modalBtn = $('#mj-joinus-btn')
+        var modal = $('.mj-modal')
+        var closeModal = $('.mj-modal .close') 
+        modalBtn.click(function(event) {
+            modal.removeClass('hide')
+        })
+        closeModal.click(function(event) {
+            /* Act on the event */
+            modal.addClass('hide')
+        });
+
+        // var joinUsUrl = 'http://192.168.0.251:8080/MijiWeb/joinInsert.action?param='
+        var joinUsUrl = 'http://app.quandikeji.com:8188/MijiWeb/joinInsert.action?param='
+        // var param = "{'name':'王大锤','mobile':'13407249293','storeName':'7间客栈','Freelanding':'TWlqaVdlYi9qb2luSW5zZXJ0LmFjdGlvbg=='}"
+        var param = {}
+        var join_name, join_mobile, join_storename
+        var Freelanding = 'TWlqaVdlYi9qb2luSW5zZXJ0LmFjdGlvbg=='
+        
+        function checkPhone(phone){ 
+            if(!(/^1[34578]\d{9}$/.test(phone))){ 
+                alert("手机号码有误，请重填");  
+                return false; 
+            }
+            return true
+        }
+
+        function joinUs () {
+            join_name = $('#join_name').val()
+            join_mobile = $('#join_mobile').val()
+            join_storename = $('#join_storename').val()
+            var checkphone = checkPhone(join_mobile)
+            console.log(`name ${join_name}, mobile ${join_mobile}, store ${join_storename}`)
+            if (checkphone) {
+                param.name = join_name
+                param.mobile = join_mobile
+                param.storeName = join_storename
+                param.Freelanding = Freelanding
+
+                var posturl = joinUsUrl + JSON.stringify(param)
+                console.log('posturl', posturl)
+                $.post(posturl, {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                }, function(data) {
+                    console.log('data', data)
+                    console.log('data', typeof data)
+                    data = JSON.parse(data)
+                    if (data.code === 200) {
+                        alert("门店申请成功， 请耐心等待审核")
+                        modal.addClass('hide')
+                    } else {
+                        alert(data.mess)
+                    }
+                })
+                .fail(function (data) {
+                    console.log('data err', data)
+                    alert("门店申请失败，请重新尝试");
+                })
+            }
+        }
+
+
+
+        var modalSubmit = $('#modal-submit')
+
+        modalSubmit.click(function () {
+            joinUs()
+        })
+
+    });
+    </script>
+</body>
+
+</html>
