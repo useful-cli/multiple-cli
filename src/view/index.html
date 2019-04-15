@@ -7,23 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @@include('../template/meta.html')
     <title>妙寄智慧社区</title>
-    <script type="text/javascript" charset="utf-8">
-        function indexbrowserRedirect() {
-            var sUserAgent = navigator.userAgent.toLowerCase();
-            var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
-            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
-            var bIsMidp = sUserAgent.match(/midp/i) == "midp";
-            var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
-            var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
-            var bIsAndroid = sUserAgent.match(/android/i) == "android";
-            var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
-            var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
-            if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM){
-                window.location.href='../index.html';
-            }
-        }
-        indexbrowserRedirect();
-    </script>
     <link rel="shortcut icon" href="../assets/images/logo.ico" />
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/reset.css">
@@ -35,151 +18,156 @@
 <body>
     <div class="mj container-fluid">
         @@include('../template/header.html')
+        <!-- banner -->
         <div class="mj-swiper swiper-container">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                <div class="swiper-slide">
-                    <img src="../assets/images/banner/banner_fir.png" alt="">
-                </div>
-                <div class="swiper-slide">
-                    <img src="../assets/images/banner/banner_sec.png" alt="">
-                </div>
+            <div class="swiper-slide">
+                <img src="../assets/images/1.0.2/pc_ban.png" alt="ban">
             </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
-        </div>
-        <div class="mj-search row">
-            <div class="col-md-5">
-                <div class="mj-search-box">
-                    <p>物流信息查询</p>
-                    <div class="mj-search-box-tools">
-                        <select name="express" placeholder="请选择快递公司" id="brand">
-                            <option value="" class="hide">请选择快递公司</option>
-                            <option value="SF">顺丰快递</option>
-                            <option value="YTO">圆通快递</option>
-                            <option value="STO">申通快递</option>
-                            <option value="YD">韵达快递</option>
-                        </select>
-                        <input type="text" name="" value="" placeholder="请输入运单号" id="orderSn">
-                        <button type="button" class="" id="express-search">查询</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-7">
-                <div class="mj-search-box">
-                    <p>服务站查询</p>
-                    <div class="mj-search-box-tools">
-                        <div class="mj-search-box-tools-city-picker">
-                            <input id="city-picker" readonly type="text" placeholder="请选择省市区">
+            <div class="swiper-search">
+                <div class="swiper-search-box">
+                    <div class="box-info">
+                        <p class="box-info-title">物流信息查询</p>
+                        <div class="box-info-tools">
+                            <select name="express" placeholder="请选择快递公司" id="brand">
+                                <option value="" class="hide">请选择快递公司</option>
+                                <option value="SF">顺丰快递</option>
+                                <option value="YTO">圆通快递</option>
+                                <option value="STO">申通快递</option>
+                                <option value="YD">韵达快递</option>
+                            </select>
+                            <input type="text" name="" value="" placeholder="请输入运单号" id="orderSn">
+                            <button type="button" class="" id="express-search">查询</button>
                         </div>
-                        <input style="width: 46%;" type="text" name="" value="" placeholder="请输入关键地址， 如小区名、大厦">
-                        <button type="button" class="btn btn-default" id="express-city">查询</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mj-data row">
-            <div class="mj-data-col col-md-4">
-                <div class="mj-data-col-txt">
-                    <img src="../assets/images/ico_peo.png" alt="覆盖人数">
-                    <span>1000000 +</span>
-                </div>
-                <div class="mj-data-col-detail">
-                    <span>覆盖人数</span>
-                </div>
-            </div>
-            <div class="mj-data-col col-md-4">
-                <div class="mj-data-col-txt">
-                    <img src="../assets/images/ico_rec.png" alt="累计揽件">
-                    <span>450000 +</span>
-                </div>
-                <div class="mj-data-col-detail">
-                    <span>累计揽件</span>
+        <!-- 数据展示 -->
+        <div class="mj-delivery">
+            <div class="selection-title">
+                <p class="selection-title-cn">包裹配送</p>
+                <p class="selection-title-en">DELIVERY</p>
+                <div class="selection-title-line">
+                    <div></div>
                 </div>
             </div>
-            <div class="mj-data-col col-md-4">
-                <div class="mj-data-col-txt">
-                    <img src="../assets/images/ico_sen.png" alt="累计派件">
-                    <span>4200000 +</span>
+            <div class="mj-delivery-data row">
+                <div class="mj-delivery-data-col col-md-4">
+                    <div class="mj-delivery-data-col-txt">
+                        <div class="mj-delivery-data-col-txt__img">
+                            <img src="../assets/images/1.0.2/pc_ico_peo.png" alt="覆盖人数">
+                        </div>
+                        <p class="intro">覆盖人数</p>
+                        <p>1000000 +</p>
+                    </div>
                 </div>
-                <div class="mj-data-col-detail">
-                    <span>累计派件</span>
+                <div class="mj-delivery-data-col col-md-4">
+                    <div class="mj-delivery-data-col-txt">
+                        <div class="mj-delivery-data-col-txt__img">
+                            <img src="../assets/images/1.0.2/pc_ico_rec.png" alt="累计揽件">
+                        </div>
+                        <p class="intro">累计揽件</p>
+                        <p>450000 +</p>
+                    </div>
+                </div>
+                <div class="mj-delivery-data-col col-md-4">
+                    <div class="mj-delivery-data-col-txt">
+                        <div class="mj-delivery-data-col-txt__img">
+                            <img src="../assets/images/1.0.2/pc_ico_sen.png" alt="累计派件">
+                        </div>
+                        <p class="intro">累计派件</p>
+                        <p>4200000 +</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- 公司简介 -->
         <div class="mj-intro">
-            <div class="mj-intro-title">
-                妙寄智慧社区介绍
-            </div>
-            <div class="row">
-                <div class="col-md-5">
-                    <img src="../assets/images/img_mij.png" alt="品牌介绍">
+            <div class="mj-intro-container">
+                <div class="selection-title">
+                    <p class="selection-title-cn">公司简介</p>
+                    <p class="selection-title-en">INTRODUCTION</p>
+                    <div class="selection-title-line">
+                        <div></div>
+                    </div>
                 </div>
-                <div class="col-md-7 mj-intro-content">
-                    妙寄品牌属于上海圈嘀科技有限公司，是以电商实体零售店＋O2O领域的新商业模式，新零售打通了传统线下渠道中，从品牌商到消费者的信息链条、实体展示、品质诚信；建立触端新物流，搭建城市、社区末端配送网络，解决最后100米，让线上电商与线下实体店有机结合，按需采购、消费升级、节时便利等元素融入本地社区生活，回归线下人际交流，并配合末端配送、自提等；最终实现妙寄•智慧社区的整个生态体系。
+                <div class="mj-intro-content">
+                    <div class="mj-intro-content__img">
+                        <img src="../assets/images/1.0.2/pc_ico_com.png" alt="公司">
+                    </div>
+                    <div class="floater"></div>
+                    <div class="mj-intro-content__word">
+                        <p>
+                            上海妙寄信息科技有限公司，是以快递行业最后一公里解决方案的公司，以社区终端为切入点，在提升快递末端效率以及便捷的基础上，率先提出“店”+“人”+”机“多元化服务需求，来完成全新社区零售及生活服务平台。
+                        </p>
+                        <p>
+                            上海妙寄信息科技有限公司，是一家互联网科技公司，通过社区终端大数据，高效的协同力，与合作伙伴一起搭建社区服务网，提高末端效率，降低末端成本，提升用户多元化服务体验核心。覆盖社区，物流服务、社区服务、体验中心，广告媒介等领域，为用户提供全场景、全时段的末端服务，也可以更好的满足用户需求，开放关联商业，形成有效的用户互动闭环。
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- 服务优势 -->
         <div class="mj-superiority">
-            <div class="title">服务优势</div>
+            <div class="selection-title">
+                <p class="selection-title-cn">服务优势</p>
+                <p class="selection-title-en">ADVANTAGE</p>
+                <div class="selection-title-line">
+                    <div></div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-3 padding-arround">
-                    <div class="express-bg">
-                        <div class="mj-superiority-default">
-                            <img src="../assets/images/ico_exp.png" alt="快递">
-                            <span>快递</span>
-                        </div>
-                        <div class="mj-superiority-hover">
-                            <div>
-                                终端快递市场巨大，收派两段，引入强大的流量入口。稳定的经济收入，直接提高现金流。
-                            </div>
-                        </div>
+                    <div class="mj-superiority">
+                        <img src="../assets/images/1.0.2/pc_ico_mes.png" alt="快递">
+                        <p>快递</p>
+                        <p>
+                            终端快递市场巨大，收派两段，引入强大的流量入口。稳定的经济收入，直接提高现金流。
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-3 padding-arround">
-                    <div class="tel-bg">
-                        <div class="mj-superiority-default">
-                            <img src="../assets/images/ico_tec.png" alt="技术">
-                            <span>技术</span>
-                        </div>
-                        <div class="mj-superiority-hover">
-                            <div>
-                                妙寄app，拥有强大的技术资源，集合各大快递公司终端派件系统，以及与第三方企业直接对接。
-                            </div>
-                        </div>
+                    <div class="mj-superiority">
+                        <img src="../assets/images/1.0.2/pc_ico_tec.png" alt="技术">
+                        <p>技术</p>
+                        <p>
+                            妙寄app，拥有强大的技术资源，集合各大快递公司终端派件系统，以及与第三方企业直接对接。
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-3 padding-arround">
-                    <div class="ser-bg">
-                        <div class="mj-superiority-default">
-                            <img src="../assets/images/ico_ser.png" alt="服务">
-                            <span>服务</span>
-                        </div>
-                        <div class="mj-superiority-hover">
-                            <div>
-                                引入互联网终端社区服务，与全国和本土的服务平台打通直接拉近与消费者的互动。
-                            </div>
-                        </div>
+                    <div class="mj-superiority">
+                        <img src="../assets/images/1.0.2/pc_ico_ser.png" alt="服务">
+                        <p>服务</p>
+                        <p>
+                            引入互联网终端社区服务，与全国和本土的服务平台打通直接拉近与消费者的互动。
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-3 padding-arround">
-                    <div class="ele-bg">
-                        <div class="mj-superiority-default">
-                            <img src="../assets/images/ico_ele.png" alt="电商">
-                            <span>电商</span>
-                        </div>
-                        <div class="mj-superiority-hover">
-                            <div>
-                                导入各大互联网平台合作，直接将千万种电商产品代入线下实体店铺，让体验产生消费。
-                            </div>
-                        </div>
+                    <div class="mj-superiority">
+                        <img src="../assets/images/1.0.2/pc_ico_sho.png" alt="电商">
+                        <p>电商</p>
+                        <p>
+                            导入各大互联网平台合作，直接将千万种电商产品代入线下实体店铺，让体验产生消费。
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="mj-joinus">
-            <button id="mj-joinus-btn">马上申请合作</button>
+            <!-- 申请合作按钮 -->
+            <div class="joinus">
+                <button id="joinus-btn">马上申请合作</button>
+            </div>
+            <div class="coservice">
+                <div class="coservice-row row">
+                    <div class="col-md-6 tl ">
+                        <a href="about.html" title="关于我们">关于我们</a>
+                    </div>
+                    <div class="col-md-6 tr">
+                        <i class="icon-phone"></i><span>客服电话：4008201563 (9:30-18:00在线) </span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="mj-modal hide" id="joinusModal">
           <div class="mj-modal-title">
@@ -202,17 +190,6 @@
               </form>
           </div>
         </div><!-- /.modal -->
-
-        <div class="mj-coservice">
-            <div class="mj-coservice-row row">
-                <div class="col-md-6 tl ">
-                    <a href="about.html" title="关于我们">关于我们</a>
-                </div>
-                <div class="col-md-6 tr">
-                    <i class="icon-phone"></i><span>客服电话：4008201563 (9:30-18:00在线) </span>
-                </div>
-            </div>
-        </div>
     </div>
     @@include('../template/footer.html')
     <script src="../assets/js/lib/jquery-3.1.1.min.js"></script>
@@ -260,7 +237,7 @@
             alert('暂未开通， 敬请期待')
         });
 
-        var modalBtn = $('#mj-joinus-btn')
+        var modalBtn = $('#joinus-btn')
         var modal = $('.mj-modal')
         var closeModal = $('.mj-modal .close') 
         modalBtn.click(function(event) {

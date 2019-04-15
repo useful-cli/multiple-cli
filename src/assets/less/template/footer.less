@@ -1,18 +1,23 @@
 .footer {
-    padding: 0 0;
+    padding: 0;
     background: #333333;
     &-con {
         .maxwidth;
         padding-top: 25px;
         padding-bottom: 10px;
-        padding-left: 4%;
         color: white;
+        .col-md-10 {
+            padding-left: 0;
+        }
         p {
             font-size: 15px;
             padding-bottom: 15px;
         }
+        .col-md-2 {
+            padding-right: 0;
+        }
         &-wx {
-            text-align: center;
+            text-align: right;
             img {
                 height: 80px;
                 width: 80px;
@@ -20,6 +25,15 @@
             p {
                 padding-top: 5px;
                 font-size: 12px;
+            }
+        }
+    }
+    &-zhizhao {
+        padding-top: 10px;
+        a {
+            color: white;
+            img {
+                width: 30px;
             }
         }
     }

@@ -173,8 +173,10 @@
             // var url = 'http://app.quandikeji.com:8088/quandiExpressSite1.4.0/Logistics/queryLogisticsInfoForJson?'
             // var url = 'http://192.168.231.112:8081/ExpressCompany/ExpressOperation/KdniaoTrackQuery'
             // var url = 'http://www.mijihome.cn:8088/ExpressCompany/ExpressOperation/KdniaoTrackQuery'
-            var url = 'http://main.mijihome.cn:8088/ExpressCompany/ExpressOperation/queryExpreeRouteInfo'
+            // var url = 'http://main.mijihome.cn:8001/ExpressCompany/ExpressOperation/queryExpreeRouteInfo'
             // var url = 'http://192.168.231.50:8088/ExpressCompany/ExpressOperation/queryExpreeRouteInfo'
+            // var url = 'http://main.mijihome.cn:8088/ExpressCompany/ExpressOperation/queryExpreeRouteInfo'
+            var url = 'http://main.mijihome.cn:8088/ExpressCompany/ExpressOperation/queryExpreeRouteInfo'
             
             function GetQueryString(name) {
                 var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -237,6 +239,7 @@
                   async: false,
                   url: url,
                   type: 'POST',
+                  timeout : 5000,
                   data: {
                       param: ajaxData
                   },
@@ -247,7 +250,6 @@
                         alert(data.mess)
                         return
                     }
-                    // var state = 
                     var parts = data.obj
                     var dom = ""
                     for (var i = 0, len = parts.length; i < len; i++) {
@@ -257,9 +259,20 @@
                     $('#resultContent').html(dom)
                   },
                   error: function(data){
+                      console.log('error')
                     $('#loading').addClass('hidesoft');
                     // alert(data.errorResult)
-                  }
+                  },
+                  complete : function(XMLHttpRequest,status){ 
+                      //请求完成后最终执行参数
+                      console.log('complete')
+                　　　if(status=='timeout'){
+                        console.log('complete 2')
+                        //超时,status还有success,error等值的情况
+                　　　　 ajaxTimeoutTest.abort();
+                　　　   alert("超时");
+                　　　}
+                　}
                 })
                 
             }
